@@ -2775,7 +2775,6 @@ function analizarMantenimiento() {
         link.setAttribute("href", encodedUri); link.setAttribute("download", `HUF_${type.toUpperCase()}_Report_${new Date().toLocaleDateString()}.csv`);
         document.body.appendChild(link); link.click();
     }
-// Sustituye tu función initApp actual con esta versión mejorada
 async function initApp() {
     // 1. Obtener configuración de año desde Firebase
     try {
@@ -2787,10 +2786,16 @@ async function initApp() {
         renderFilterGrids();
 
         // 2. Carga automática de Capacidad y Proyectos
-        // Se asegura que al iniciar, los listeners se activen y los datos se traigan de Firebase
+        // Se asegura que al iniciar, los datos se traigan de Firebase como fuente de verdad
         await Promise.all([
             db.ref(DB_CAPACITY).once('value').then(snap => {
-                capacityData = snap.val() || {};
+                const data = snap.val() || {};
+                
+                // Actualizamos el objeto global que usan las gráficas
+                window.customCapacity = data;
+                
+                // Actualizamos el caché local para consistencia
+                localStorage.setItem('huf_custom_capacity', JSON.stringify(data));
             }),
             db.ref(DB_PROJECTS).once('value').then(snap => {
                 const data = snap.val();
@@ -2802,16 +2807,19 @@ async function initApp() {
         // 3. Inicializar componentes visuales
         if(charts.length === 0) initCharts();
         
-        // 4. Activar escuchas en tiempo real
+        // 4. Activar escuchas en tiempo real (para que los cambios futuros se vean sin recargar)
         listenData();
         
         // 5. Refrescar interfaz
+        // Llamamos a las funciones de renderizado después de asegurar que capacityData está cargado
         updateUI();
+        
+        if (typeof renderAllStats === 'function') renderAllStats();
         if (typeof renderGantt === 'function') renderGantt();
 
     } catch (error) {
         console.error("Error al inicializar la app:", error);
-        // Opcional: mostrar un aviso de que no se pudieron cargar los datos
+        Swal.fire('Error', 'No se pudieron cargar los datos de la nube.', 'error');
     }
 }
 
@@ -3249,9 +3257,7 @@ function editProject(id) {
         loadCapacityYear();
     }
     function loadCapacityYear() { const year = document.getElementById('capYearSelect').value; const vals = capacityData[year] || Array(12).fill(500); document.querySelectorAll('.cap-input').forEach((inp, i) => inp.value = vals[i]); }
-    function saveCapacity() {
-         const year = document.getElementById('capYearSelect').value; const vals = Array.from(document.querySelectorAll('.cap-input')).map(i => parseFloat(i.value) || 0); db.ref(`${DB_CAPACITY}/${year}`).set(vals).then(() =>
-          { Swal.fire("Capacity Updted!", "", "success"); showModule('main-app'); }); }
+
 
 
 async function deleteProject(id) {
@@ -3767,7 +3773,6 @@ function backToStatsAndRefresh() {
     renderAllStats(); // Esto obliga a redibujar las barras con la nueva capacidad
 }
 
-// ACTUALIZADA: Asegura que el guardado sea detectado por renderAllStats
 function saveCapacityData() {
     const devId = document.getElementById('capDeviceSelect').value;
     const year = document.getElementById('capYearSelect').value;
