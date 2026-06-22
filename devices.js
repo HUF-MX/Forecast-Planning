@@ -8,14 +8,14 @@ window.huf_devices_config = [
     {
         id: "1",
         name: "CHAMBER SE",
-        hims: ["HIM-1138", "HIM-0941", "HIM-2664", "HIM-2662", "HIM-0916", "HIM-0917", "HIM-1139", "HIM-2663"]
+        hims: ["HIM-1138", "HIM-0941", "HIM-2664", "HIM-0916", "HIM-0917", "HIM-1139"]
     },
 
     /**Thermotron chamber-*/
     {
         id: "2",
         name: "CHAMBER SM",
-        hims: ["HIM-0939", "HIM-0938", "HIM-1144", "HIM-0943", "HIM-2660", "HIM-1143", "HIM-2675", "HIM-2682", "HIM-2656", "HIM-2659", "HIM-2666", "HIM-2668", "HIM-2669"]
+        hims: ["HIM-0939", "HIM-0938", "HIM-1144", "HIM-0943", "HIM-1143", "HIM-2668",  "HIM-2666", "HIM-2669","HIM-2659*","HIM-2675*","HIM-2682*",]
     },
 
     /**Thermotron chamber*/
