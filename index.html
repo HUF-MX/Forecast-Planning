@@ -1194,7 +1194,8 @@ onkeydown="manejarTeclado(event)" onclick="hideContextMenu()">
  <span style=><i class="fa-solid fa-magnifying-glass-chart"></i></span>
         <input type="text" id="ganttSearch" placeholder="Search project or HIM..." oninput="renderGantt()" style="border:none; outline:none; font-size:13px; width:180px;">
             <label for="yearSelector" style="font-weight: bold;"></label>
-    <select id="yearSelector" onchange="selectedYear = parseInt(this.value); renderGantt(); updateCharts();" style="padding: 5px; border-radius: 4px;">
+    <select id="yearSelector" onchange="selectedYear = this.value === 'all' ? 'all' : parseInt(this.value, 10); renderGantt(); updateCharts();" style="padding: 5px; border-radius: 4px;">
+        <option value="all">All</option>
         <option value="2024">2024</option>
         <option value="2025">2025</option>
         <option value="2026" selected>2026</option>
@@ -2722,6 +2723,23 @@ function ejecutarCambioTBD(pIdx) {
     // 3. Refrescamos el Gantt para mover el proyecto de pestaña
     renderGantt();
 }
+function normalizeYearFilter(value) {
+    if (value === 'all' || value === '' || value === null || value === undefined) return 'all';
+    const parsed = parseInt(value, 10);
+    return Number.isNaN(parsed) ? 'all' : parsed;
+}
+
+function dateRangeOverlapsYear(startDate, endDate, yearFilter) {
+    if (yearFilter === 'all') return true;
+
+    const start = new Date(startDate);
+    const end = new Date(endDate || startDate);
+    const yearStart = new Date(yearFilter, 0, 1);
+    const yearEnd = new Date(yearFilter + 1, 0, 1);
+
+    return start < yearEnd && end >= yearStart;
+}
+
 function renderGantt() {
     const container = document.getElementById('ganttContainer');
     if (!container) return;
@@ -2746,6 +2764,8 @@ function renderGantt() {
 
     const scale = document.getElementById('viewScale').value;
     const searchTerm = document.getElementById('ganttSearch')?.value.toLowerCase() || "";
+    const yearFilter = normalizeYearFilter(document.getElementById('yearSelector')?.value ?? selectedYear);
+    selectedYear = yearFilter;
     const today = new Date();
     const currentYear = today.getFullYear(); 
     today.setHours(0, 0, 0, 0);
@@ -2773,12 +2793,14 @@ function renderGantt() {
             const matchingTeams = a.teams.map((t, originalTIdx) => ({ ...t, originalTIdx }))
                 .filter(t => {
                     const startDate = new Date(t.start);
+                    const endDate = new Date(startDate);
+                    endDate.setDate(endDate.getDate() + Math.max(0, (t.days || 1) - 1));
                     const weekInfo = getWeekData(startDate);
                     const cwString = `cw-${String(weekInfo.week).padStart(2, '0')}`;
                     const matchesSearch = p.name.toLowerCase().includes(searchTerm) || 
                                          t.name.toLowerCase().includes(searchTerm) || 
                                          cwString.includes(searchTerm);
-                    const matchesYear = startDate.getFullYear() === selectedYear;
+                    const matchesYear = dateRangeOverlapsYear(startDate, endDate, yearFilter);
                     return matchesSearch && matchesYear;
                 });
             return { ...a, originalAIdx, teams: matchingTeams };
@@ -2798,8 +2820,10 @@ function renderGantt() {
     .sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }));
 
     const filteredMaintenance = maintenanceLogs.filter(m => {
-        const matchesMaint = m.him.toLowerCase().includes(searchTerm) || m.desc.toLowerCase().includes(searchTerm);
-        return matchesMaint && new Date(m.start).getFullYear() === selectedYear;
+        const startDate = new Date(m.start);
+        const endDate = new Date(m.end || m.start);
+        const matchesMaint = (m.him || '').toLowerCase().includes(searchTerm) || (m.desc || '').toLowerCase().includes(searchTerm);
+        return matchesMaint && dateRangeOverlapsYear(startDate, endDate, yearFilter);
     });
 
     let activeCount = 0;
@@ -3006,8 +3030,8 @@ function renderGantt() {
 }
 
 function getCapacity(devId, weekNum, defaultTotalHims) {
+    if (selectedYear === 'all') return defaultTotalHims;
 
-    // 🔴 IMPORTANTE: ahora incluye el año
     if (
         window.customCapacity &&
         window.customCapacity[selectedYear] &&
@@ -3031,6 +3055,8 @@ function renderAllStats() {
     const today = new Date();
     const currentYear = today.getFullYear();
     const currentWeekResult = getWeekNumber(today);
+    const yearFilter = normalizeYearFilter(selectedYear);
+    const yearLabel = yearFilter === 'all' ? 'ALL' : yearFilter;
     const currentWeekNum = (typeof currentWeekResult === 'object' ? currentWeekResult.week : currentWeekResult);
 
     // --- CONFIGURACIÓN DE CONTENEDOR (2 COLUMNAS) ---
@@ -3061,7 +3087,7 @@ function renderAllStats() {
                 let weeksForThisTask = new Set();
                 
                 for (let i = 0; i < t.days; i++) { 
-                    if (cur.getFullYear() === selectedYear) { 
+                    if (dateRangeOverlapsYear(cur, cur, yearFilter)) { 
                         let weekResult = getWeekNumber(cur);
                         let wn = (typeof weekResult === 'object' ? weekResult.week : weekResult) - 1;
                         if (wn >= 0 && wn < 52) {
@@ -3176,7 +3202,7 @@ function renderAllStats() {
                 }
             </style>
             <div class="device-stat-title" style="font-size: 13px; font-weight: bold; margin-bottom: 5px; display: flex; justify-content: space-between;">
-                <span>${dev.name} (${selectedYear})</span>
+                <span>${dev.name} (${yearLabel})</span>
             </div>
             <div class="chart-frame" style="padding: 5px 0 0 35px; position: relative; height: 220px; min-width: 0; display: flex; flex-direction: column;"> 
                 
@@ -3197,7 +3223,7 @@ function renderAllStats() {
                     </div>
                 </div>
                 
-                <div class="x-axis-title" style="font-size: 9px; text-align: center; margin-top: 10px; color: #aaa;">${selectedYear} WEEKS</div>
+                <div class="x-axis-title" style="font-size: 9px; text-align: center; margin-top: 10px; color: #aaa;">${yearLabel} WEEKS</div>
             </div>`;
         container.appendChild(row);
     });
