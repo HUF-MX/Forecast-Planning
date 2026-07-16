@@ -2787,13 +2787,13 @@ function renderGantt() {
         return { ...p, originalPIdx, activities: matchingActivities };
     }).filter(p => {
         const hasActivitiesThisYear = p.activities.length > 0;
-        const isYearCurrent = selectedYear === currentYear;
-        const matchesSearch = p.name.toLowerCase().includes(searchTerm);
+        const matchesProjectName = (p.name || '').toLowerCase().includes(searchTerm);
 
-        if (!isYearCurrent) {
-            return hasActivitiesThisYear && matchesSearch;
+        if (!searchTerm) {
+            return hasActivitiesThisYear;
         }
-        return matchesSearch || hasActivitiesThisYear;
+
+        return matchesProjectName || hasActivitiesThisYear;
     })
     .sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' }));
 
