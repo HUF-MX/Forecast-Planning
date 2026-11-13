@@ -90,7 +90,7 @@
     --loc-spare: #555;
             
         }
-        body { font-family: 'Segoe UI', sans-serif; background: #ffffff; margin: 0; padding: 10px; overflow-x: hidden; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f1; margin: 0; padding: 10px; overflow-x: hidden; }
         .card { max-width: 98%; margin: auto; background: #ffffff; padding: 12px; border-radius: 12px; border-top: 8px solid var(--huf-red); box-shadow: 0 4px 15px rgba(0,0,0,0.1); position: relative; min-height: 550px; transition: max-width 0.4s ease; }
         .card-login { max-width: 30%; margin: auto; background: #ffffff; padding: 12px; border-radius: 12px; border-top: 8px solid var(--huf-red); box-shadow: 0 4px 15px rgba(0,0,0,0.1); position: relative; min-height: 550px; transition: max-width 0.4s ease; }
         
@@ -873,6 +873,469 @@ body.is-readonly select.admin-only {
     pointer-events: none;
     background-color: #f0f0f0;
 }
+
+    body {
+        background:
+            radial-gradient(ellipse at 10% 10%, rgba(170, 28, 37, .08), transparent 34rem),
+            radial-gradient(ellipse at 92% 88%, rgba(37, 128, 112, .08), transparent 30rem),
+            #f4f4f1;
+    }
+
+    #mainCard.card-login {
+        width: min(100% - 24px, 480px);
+        max-width: 480px;
+        min-height: 0;
+        margin: clamp(24px, 7vh, 76px) auto;
+        padding: clamp(24px, 5vw, 42px);
+        overflow: hidden;
+        border: 1px solid rgba(42, 45, 44, .1);
+        border-top: 5px solid var(--huf-red);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, .94);
+        box-shadow: 0 24px 70px rgba(31, 35, 33, .12);
+        animation: card-arrive .7s cubic-bezier(.2, .75, .25, 1) both;
+    }
+
+    #mainCard.card-login .logo-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        margin: 0 0 36px;
+        text-align: left;
+    }
+
+    #mainCard.card-login .logo-container img {
+        width: auto;
+        max-width: 150px;
+        max-height: 58px;
+        margin: 0;
+        object-fit: contain;
+        object-position: left center;
+    }
+
+    #mainCard.card-login .logo-subtitle {
+        max-width: 180px;
+        color: #58605c;
+        font-size: 11px;
+        font-weight: 700;
+        line-height: 1.5;
+        text-align: right;
+    }
+
+    #viewLogin .login-box {
+        width: min(100%, 360px);
+        margin: 0 auto;
+        text-align: left;
+    }
+
+    #viewLogin .moving-title {
+        display: block;
+        margin: 0 0 8px;
+        color: #252a28;
+        font-size: clamp(29px, 7vw, 38px);
+        line-height: 1.08;
+        text-align: left;
+        text-shadow: none;
+        animation: title-arrive .65s .12s both;
+    }
+
+    #viewLogin .login-box::before {
+        display: block;
+        margin-bottom: 12px;
+        color: var(--huf-red);
+        content: 'HUF SYSTEM  /  SECURE ACCESS';
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 1.4px;
+    }
+
+    #viewLogin .login-intro {
+        margin: 0 0 24px;
+        color: #69716d;
+        font-size: 14px;
+        line-height: 1.55;
+    }
+
+    #viewLogin .input-login {
+        min-height: 50px;
+        margin-bottom: 12px;
+        padding: 13px 15px;
+        border: 1px solid #d7dcda;
+        border-radius: 9px;
+        background: #fbfcfb;
+        color: #222725;
+        text-align: left;
+        transition: border-color .2s ease, box-shadow .2s ease, background .2s ease, transform .2s ease;
+    }
+
+    #viewLogin .input-login:focus {
+        border-color: #348574;
+        background: #fff;
+        box-shadow: 0 0 0 4px rgba(52, 133, 116, .12);
+        transform: translateY(-1px);
+    }
+
+    #viewLogin .btn-send {
+        min-height: 50px;
+        margin-top: 8px;
+        border-radius: 9px;
+        background: #a91e28;
+        box-shadow: 0 8px 18px rgba(169, 30, 40, .18);
+        transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    #viewLogin .btn-send:hover {
+        background: #871923;
+        box-shadow: 0 11px 22px rgba(169, 30, 40, .24);
+        transform: translateY(-2px);
+    }
+
+    #viewLogin .btn-send:disabled {
+        cursor: wait;
+        opacity: .72;
+        transform: none;
+    }
+
+    #viewLogin .register-hint {
+        margin-top: 25px !important;
+        padding-top: 19px;
+        border-top: 1px solid #e9ecea;
+        color: #69716d !important;
+        text-align: left !important;
+    }
+
+    #viewLogin .register-hint p:first-child {
+        margin: 0 0 5px;
+        color: #252a28;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    #viewLogin .register-hint p:nth-child(2) {
+        margin: 0 0 10px;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    #viewLogin .register-hint .btn-send {
+        width: auto;
+        min-height: 0;
+        margin: 0;
+        padding: 8px 0;
+        background: transparent;
+        box-shadow: none;
+        color: #287666;
+        font-size: 13px;
+        text-align: left;
+    }
+
+    #viewLogin .register-hint .btn-send:hover {
+        background: transparent;
+        box-shadow: none;
+        color: #185b4e;
+        transform: none;
+    }
+
+    #viewLogin #loginError {
+        border-radius: 8px;
+        animation: error-arrive .25s ease both;
+    }
+
+    #viewMenu .login-box {
+        margin: 62px auto 20px;
+    }
+
+    #viewMenu .login-box h2 {
+        margin: 0;
+        color: #252a28;
+        font-size: clamp(22px, 4vw, 30px);
+        letter-spacing: 0;
+    }
+
+    #viewMenu .menu-container {
+        max-width: 850px;
+        gap: 20px;
+        padding: 34px 20px 54px;
+    }
+
+    #viewMenu .btn-menu {
+        position: relative;
+        min-width: 0;
+        width: min(100%, 360px);
+        height: 205px;
+        flex-direction: column;
+        gap: 15px;
+        border: 1px solid #e1e4e2 !important;
+        border-top: 4px solid var(--huf-red) !important;
+        border-radius: 12px;
+        color: #252a28;
+        font-size: 20px !important;
+        letter-spacing: .6px;
+        box-shadow: 0 10px 28px rgba(31, 35, 33, .07);
+        transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+        animation: menu-arrive .55s both;
+    }
+
+    #viewMenu .btn-menu:nth-child(2) { animation-delay: .12s; }
+    #viewMenu .btn-menu i { font-size: 34px; color: #287666; transition: transform .25s ease, color .25s ease; }
+
+    #viewMenu .btn-menu:hover {
+        background: #fff;
+        color: #252a28;
+        box-shadow: 0 18px 34px rgba(31, 35, 33, .13);
+        transform: translateY(-5px);
+    }
+
+    #viewMenu .btn-menu:hover i { color: var(--huf-red); transform: scale(1.1); }
+
+    #viewStats.active-view,
+    #viewTooling.active-view {
+        animation: equipment-view-enter .48s cubic-bezier(.2, .7, .25, 1) both;
+    }
+
+    #viewStats > h2,
+    #viewTooling > h2 {
+        position: relative;
+        width: fit-content;
+        max-width: 100%;
+        margin: 14px auto 22px;
+        animation: equipment-title-enter .5s .08s both;
+    }
+
+    #viewStats > h2::after,
+    #viewTooling > h2::after {
+        display: block;
+        width: 52px;
+        height: 3px;
+        margin: 9px auto 0;
+        border-radius: 2px;
+        background: #318675;
+        content: '';
+        transform-origin: center;
+        animation: equipment-rule-enter .55s .2s both;
+    }
+
+    #viewStats .btn-back,
+    #viewTooling .btn-back,
+    #viewStats .btn-tool,
+    #viewTooling .btn-tool {
+        transition: transform .2s ease, box-shadow .2s ease, filter .2s ease;
+    }
+
+    #viewStats .btn-back:hover,
+    #viewTooling .btn-back:hover,
+    #viewStats .btn-tool:hover,
+    #viewTooling .btn-tool:hover {
+        filter: brightness(1.06);
+        box-shadow: 0 7px 16px rgba(30, 38, 34, .16);
+        transform: translateY(-2px);
+    }
+
+    #viewStats > div:not(#statsMainContainer) {
+        animation: equipment-controls-enter .45s .12s both;
+    }
+
+    #viewStats #statsYearSelector,
+    #viewTooling #yearSelector,
+    #viewTooling #viewScale,
+    #viewTooling #ganttSearch {
+        transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    #viewStats #statsYearSelector:focus,
+    #viewTooling #yearSelector:focus,
+    #viewTooling #viewScale:focus,
+    #viewTooling #ganttSearch:focus {
+        border-color: #318675;
+        box-shadow: 0 0 0 3px rgba(49, 134, 117, .14);
+        outline: none;
+    }
+
+    #viewStats .device-stat-row {
+        opacity: 0;
+        animation: equipment-card-enter .55s cubic-bezier(.2, .7, .25, 1) var(--card-delay, 0ms) both;
+        transition: box-shadow .24s ease, border-color .24s ease, transform .24s ease;
+    }
+
+    #viewStats .device-stat-row:hover {
+        border-color: rgba(49, 134, 117, .45);
+        box-shadow: 0 12px 28px rgba(35, 48, 42, .12);
+    }
+
+    #viewStats .bar-fill {
+        transform: scaleY(0);
+        transform-origin: center bottom;
+        animation: equipment-bar-rise .62s cubic-bezier(.2, .75, .25, 1) var(--bar-delay, 0ms) both;
+    }
+
+    #viewStats .stats-week-col:hover .bar-fill {
+        filter: brightness(.94) saturate(1.15);
+    }
+
+    #viewStats .trend-path {
+        animation: equipment-line-appear .8s .2s ease both;
+    }
+
+    #viewStats .week-label-stat {
+        transition: color .2s ease, transform .2s ease;
+    }
+
+    #viewStats .stats-week-col:hover .week-label-stat {
+        color: #252a28 !important;
+        transform: translateY(-2px);
+    }
+
+    #viewTooling .tooling-input-bar {
+        animation: equipment-controls-enter .5s .08s both;
+        transition: border-color .22s ease, box-shadow .22s ease;
+    }
+
+    #viewTooling .tooling-input-bar:focus-within {
+        border-color: #318675;
+        box-shadow: 0 0 0 4px rgba(49, 134, 117, .1);
+    }
+
+    #viewTooling .tooling-input-bar input,
+    #viewTooling .tooling-input-bar select {
+        transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+    }
+
+    #viewTooling .tooling-input-bar input:focus,
+    #viewTooling .tooling-input-bar select:focus {
+        border-color: #318675;
+        box-shadow: 0 0 0 3px rgba(49, 134, 117, .12);
+        outline: none;
+        transform: translateY(-1px);
+    }
+
+    #viewTooling .collapse-controls {
+        animation: equipment-controls-enter .5s .16s both;
+    }
+
+    #viewTooling .collapse-controls > div {
+        width: 100%;
+        min-width: 0;
+        flex: 1 1 100%;
+        flex-wrap: wrap;
+    }
+
+    #viewTooling .gantt-wrapper {
+        animation: equipment-gantt-frame .65s .2s both;
+        box-shadow: 0 8px 22px rgba(31, 35, 33, .08);
+        transition: box-shadow .25s ease;
+    }
+
+    #viewTooling .gantt-wrapper:hover {
+        box-shadow: 0 12px 28px rgba(31, 35, 33, .13);
+    }
+
+    #viewTooling .gantt-bar {
+        animation: equipment-gantt-bar-enter .55s cubic-bezier(.2, .75, .25, 1) var(--gantt-delay, 0ms) both;
+        transition: filter .2s ease, transform .2s ease;
+    }
+
+    #viewTooling .gantt-bar:hover {
+        filter: brightness(1.08) saturate(1.08);
+        transform: scaleY(1.08);
+        z-index: 40;
+    }
+
+    #viewTooling .gantt-task-name {
+        transition: filter .2s ease, color .2s ease;
+    }
+
+    #viewTooling .gantt-task-name:hover {
+        filter: brightness(.95);
+    }
+
+    #viewTooling .gantt-day-cell.is-today {
+        animation: equipment-today-pulse 2.8s ease-in-out infinite;
+    }
+
+    .view-layer.active-view { animation: view-arrive .35s ease both; }
+
+    @keyframes card-arrive {
+        from { opacity: 0; transform: translateY(18px) scale(.985); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes title-arrive {
+        from { opacity: 0; transform: translateY(9px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes menu-arrive {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes view-arrive {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    @keyframes error-arrive {
+        from { opacity: 0; transform: translateY(-4px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes equipment-view-enter {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes equipment-title-enter {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes equipment-rule-enter {
+        from { opacity: 0; transform: scaleX(.15); }
+        to { opacity: 1; transform: scaleX(1); }
+    }
+    @keyframes equipment-controls-enter {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes equipment-card-enter {
+        from { opacity: 0; transform: translateY(14px) scale(.99); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes equipment-bar-rise {
+        from { opacity: .4; transform: scaleY(0); }
+        to { opacity: 1; transform: scaleY(1); }
+    }
+    @keyframes equipment-line-appear {
+        from { opacity: .15; }
+        to { opacity: 1; }
+    }
+    @keyframes equipment-gantt-frame {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes equipment-gantt-bar-enter {
+        from { opacity: .35; clip-path: inset(0 100% 0 0); }
+        to { opacity: 1; clip-path: inset(0); }
+    }
+    @keyframes equipment-today-pulse {
+        0%, 100% { box-shadow: inset 0 0 0 rgba(255, 255, 255, 0); }
+        50% { box-shadow: inset 0 0 14px rgba(255, 255, 255, .3); }
+    }
+
+    @media (max-width: 640px) {
+        body { padding: 8px; }
+        #mainCard.card-login { width: auto; margin: 5vh 4px; padding: 24px 20px; }
+        #mainCard.card-login .logo-container { margin-bottom: 30px; }
+        #mainCard.card-login .logo-container img { max-width: 120px; max-height: 48px; }
+        #mainCard.card-login .logo-subtitle { max-width: 135px; font-size: 9px; }
+        #viewMenu .menu-container { flex-direction: column; align-items: stretch; padding: 20px 10px 35px; }
+        #viewMenu .btn-menu { width: 100%; height: 150px; }
+    }
+
+    @media (max-width: 800px) {
+        #viewTooling .tooling-input-bar { flex-wrap: wrap; }
+        #viewTooling #availabilityInfo { position: static !important; width: 100%; height: auto; flex-basis: 100%; text-align: left; }
+        #viewTooling .gantt-grid { grid-template-columns: minmax(190px, 42vw) 1fr; }
+        #viewStats .stats-view-container { grid-template-columns: minmax(0, 1fr) !important; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { scroll-behavior: auto !important; animation-delay: 0ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
     </style>
 
     
@@ -903,19 +1366,20 @@ onkeydown="manejarTeclado(event)" onclick="hideContextMenu()">
     <div class="menu-item delete" id="menuDeleteBtn" style="border-top: 1px solid #eee; color: red;"><i class="fa-solid fa-trash-can"></i> DELETE</div>
 </div>
 
-<div id="mainCard" class="car card-login">
+<div id="mainCard" class="card card-login">
     <div class="logo-container">
         <img src="logo.png" alt="HUF Logo" onerror="this.style.display='none';">
-        <p class="logo-subtitle">Developed By Omar Amador 1.5</p>
+        <p class="logo-subtitle">FORECAST · EQUIPMENT · MANPOWER</p>
     </div>
 
     <div id="viewLogin" class="view-layer active-view"class="card">
         <div class="login-box">
-            <h2 class="moving-title">Login System</h2>
-            <div id="loginError">⚠️ Invalid User or Password</div>
-            <input type="text" id="userInput" class="input-login" placeholder="User" oninput="limpiarError()">
-            <input type="password" id="passInput" class="input-login" placeholder="Password" oninput="limpiarError()">
-            <button class="btn-send" onclick="validarAcceso()">Sign In</button>
+            <h2 class="moving-title">Welcome back</h2>
+            <p class="login-intro">Sign in to continue to your HUF workspace.</p>
+            <div id="loginError" role="alert" aria-live="polite">Invalid user or password.</div>
+            <input type="text" id="userInput" class="input-login" placeholder="Username" aria-label="Username" autocomplete="username" oninput="limpiarError()">
+            <input type="password" id="passInput" class="input-login" placeholder="Password" aria-label="Password" autocomplete="current-password" oninput="limpiarError()">
+            <button class="btn-send" onclick="validarAcceso()"><i class="fa-solid fa-arrow-right-to-bracket" aria-hidden="true"></i> &nbsp; Sign In</button>
 
         <div class="register-hint" style="margin-top: 20px; text-align: center; font-size: 0.9em; color: #555;">
             <p>Don't have an account yet?</p>
@@ -949,6 +1413,8 @@ onkeydown="manejarTeclado(event)" onclick="hideContextMenu()">
         <button class="btn-tool admin-only" style="background:var(--huf-red);" onclick="goToCapacityEditor()">⚙️ EDIT CAPACITY</button>
         <button class="btn-tool" style="background:var(--huf-red);" onclick="openAnnual()">⚙️ VIEW ANNUAL</button>
         <button class="btn-tool" style="background:var(--huf-red);" onclick="openMonthlyView()">📅 VIEW MONTHLY</button>
+        <button class="btn-tool admin-only" id="btnWeekVisibility" style="background:#2c3e50; display:none;" onclick="openWeekVisibilityEditor()">🗓️ WEEK VISIBILITY</button>
+        <button class="btn-tool admin-only" id="btnChangeHistory" style="background:#4164a5; display:none !important;" onclick="openChangeHistory()">📋 CHANGE HISTORY</button>
 
         <div style="display:flex; align-items:center; gap:8px; margin-left:auto;">
             <label for="statsYearSelector" style="font-weight:bold; font-size:12px; margin:0;">YEAR</label>
@@ -1154,7 +1620,7 @@ onkeydown="manejarTeclado(event)" onclick="hideContextMenu()">
             <input type="text" id="toolStart" placeholder="Select Date..." style="background: white; cursor: pointer;">
             </div>
 <div style="flex:0.3;"><label style="display: block; text-align: center;  font-size: 16px">Weeks</label><input type="number" id="toolDays" placeholder="0" oninput="revisarConflictoRealTime()"></div>
-<div id="availabilityInfo" style="position: absolute; bottom: -18px; font-size: 14px;"></div>
+<div id="availabilityInfo" role="status" aria-live="polite" style="flex: 1 0 100%; min-height: 18px; font-size: 13px; font-weight: 600;"></div>
 
 
 
@@ -1424,8 +1890,8 @@ onkeydown="manejarTeclado(event)" onclick="hideContextMenu()">
             devsUnion.forEach(d => {
                 const p = prev[y] && prev[y][d] ? prev[y][d] : {};
                 const n = next[y] && next[y][d] ? next[y][d] : {};
-                // comparar semanas (excluyendo 1 y 52) hasta encontrar diferencias
-                for (let w = 2; w <= 51; w++) {
+                // comparar todas las semanas para incluir también 1 y 52 cuando estén activas
+                for (let w = 1; w <= 53; w++) {
                     const pv = p[w] === undefined ? null : p[w];
                     const nv = n[w] === undefined ? null : n[w];
                     if (pv !== nv) {
@@ -1545,11 +2011,50 @@ onkeydown="manejarTeclado(event)" onclick="hideContextMenu()">
         appUsersCache = usersSnapshotToArray(snap.val());
         return appUsersCache;
     }
-    function getSeedUsersObject() {
+    const PASSWORD_HASH_ITERATIONS = 210000;
+    function bytesToHex(bytes) {
+        return Array.from(bytes, byte => byte.toString(16).padStart(2, '0')).join('');
+    }
+    function hexToBytes(hex) {
+        return new Uint8Array((hex.match(/.{1,2}/g) || []).map(byte => parseInt(byte, 16)));
+    }
+    async function hashPassword(password, salt = crypto.getRandomValues(new Uint8Array(16)), iterations = PASSWORD_HASH_ITERATIONS) {
+        if (!window.crypto || !crypto.subtle) throw new Error('Secure password hashing requires HTTPS or localhost.');
+        const key = await crypto.subtle.importKey('raw', new TextEncoder().encode(password), 'PBKDF2', false, ['deriveBits']);
+        const derived = await crypto.subtle.deriveBits({ name: 'PBKDF2', salt, iterations, hash: 'SHA-256' }, key, 256);
         return {
-            seed_moderator: { nombre: 'Moderador General', user: 'moderador', pass: 'mod123', rol: 'moderator', estado: 'approved', creadoEn: new Date().toISOString(), creadoPor: 'system' },
-            seed_admin: { nombre: 'Administrador Base', user: 'admin', pass: 'admin123', rol: 'admin', estado: 'approved', creadoEn: new Date().toISOString(), creadoPor: 'system' },
-            seed_viewer: { nombre: 'Usuario Lector', user: 'viewer', pass: 'viewer123', rol: 'viewer', estado: 'approved', creadoEn: new Date().toISOString(), creadoPor: 'system' }
+            passwordHash: bytesToHex(new Uint8Array(derived)),
+            passwordSalt: bytesToHex(salt),
+            passwordAlgo: 'PBKDF2-SHA256',
+            passwordIterations: iterations
+        };
+    }
+    async function verifyUserPassword(user, password) {
+        if (user.passwordHash && user.passwordSalt) {
+            const stored = await hashPassword(password, hexToBytes(user.passwordSalt), Number(user.passwordIterations) || PASSWORD_HASH_ITERATIONS);
+            const expected = String(user.passwordHash).toLowerCase();
+            let difference = stored.passwordHash.length ^ expected.length;
+            for (let index = 0; index < Math.max(stored.passwordHash.length, expected.length); index++) {
+                difference |= (stored.passwordHash.charCodeAt(index) || 0) ^ (expected.charCodeAt(index) || 0);
+            }
+            return difference === 0;
+        }
+        if (typeof user.pass !== 'string' || user.pass !== password) return false;
+        const credentials = await hashPassword(password);
+        await db.ref(`${DB_USERS}/${user.id}`).update({ ...credentials, pass: null });
+        Object.assign(user, credentials);
+        delete user.pass;
+        return true;
+    }
+    async function getSeedUsersObject() {
+        const [moderatorPassword, adminPassword, viewerPassword] = await Promise.all([
+            hashPassword('mod123'), hashPassword('admin123'), hashPassword('viewer123')
+        ]);
+        const createdAt = new Date().toISOString();
+        return {
+            seed_moderator: { nombre: 'Moderador General', user: 'moderador', ...moderatorPassword, rol: 'moderator', estado: 'approved', creadoEn: createdAt, creadoPor: 'system' },
+            seed_admin: { nombre: 'Administrador Base', user: 'admin', ...adminPassword, rol: 'admin', estado: 'approved', creadoEn: createdAt, creadoPor: 'system' },
+            seed_viewer: { nombre: 'Usuario Lector', user: 'viewer', ...viewerPassword, rol: 'viewer', estado: 'approved', creadoEn: createdAt, creadoPor: 'system' }
         };
     }
     async function bootUserAccessSystem() {
@@ -1559,12 +2064,27 @@ onkeydown="manejarTeclado(event)" onclick="hideContextMenu()">
                 const usersRef = db.ref(DB_USERS);
                 const snap = await usersRef.once('value');
                 if (!snap.exists()) {
-                    await usersRef.set(getSeedUsersObject());
+                    await usersRef.set(await getSeedUsersObject());
                 }
                 const freshSnap = await usersRef.once('value');
                 appUsersCache = usersSnapshotToArray(freshSnap.val());
                 usersRef.on('value', (realtimeSnap) => {
                     appUsersCache = usersSnapshotToArray(realtimeSnap.val());
+                    const activeUserId = localStorage.getItem('user_id_huf');
+                    if (activeUserId) {
+                        const activeUser = appUsersCache.find((user) => user.id === activeUserId);
+                        if (activeUser) {
+                            currentUserRecord = activeUser;
+                            userRole = normalizeRole(activeUser.rol);
+                            localStorage.setItem('role_huf', userRole);
+                            aplicarRestriccionesRol();
+                        } else {
+                            currentUserRecord = null;
+                            localStorage.removeItem('role_huf');
+                            localStorage.removeItem('user_id_huf');
+                            localStorage.removeItem('user_name_huf');
+                        }
+                    }
                     toggleModeratorUsersButton();
                 });
             } catch (error) {
@@ -1584,8 +2104,93 @@ onkeydown="manejarTeclado(event)" onclick="hideContextMenu()">
     }
     function toggleModeratorUsersButton() {
         const btn = document.getElementById('btnModeradorUsuarios');
-        if (!btn) return;
-        btn.style.display = isModeratorRole(getCurrentStoredRole()) ? 'block' : 'none';
+        const weekVisibilityBtn = document.getElementById('btnWeekVisibility');
+        const isCurrentModerator = !!currentUserRecord &&
+            currentUserRecord.estado === 'approved' &&
+            isModeratorRole(currentUserRecord.rol);
+        if (btn) btn.style.display = isCurrentModerator ? 'block' : 'none';
+        if (weekVisibilityBtn) weekVisibilityBtn.style.display = isCurrentModerator ? 'inline-flex' : 'none';
+    }
+    function createAuditEntry(action, details) {
+        return {
+            action,
+            details,
+            timestamp: new Date().toISOString(),
+            actorName: currentUserRecord?.nombre || currentUserRecord?.user || userSession || 'Unknown user',
+            actorRole: normalizeRole(currentUserRecord?.rol || getCurrentStoredRole()),
+            actorId: currentUserRecord?.id || localStorage.getItem('user_id_huf') || ''
+        };
+    }
+    async function updateWithAudit(updates, action, details) {
+        const auditKey = db.ref('changeHistory').push().key;
+        if (!auditKey) throw new Error('Could not allocate a change-history record.');
+        return db.ref().update({
+            ...updates,
+            [`changeHistory/${auditKey}`]: createAuditEntry(action, details)
+        });
+    }
+    async function updateUserWithAudit(updates, action, details) {
+        try {
+            await updateWithAudit(updates, action, details);
+            return true;
+        } catch (error) {
+            console.error('Could not save user-management change and history', error);
+            await Swal.fire('Error', `Could not save user change: ${error.message}`, 'error');
+            return false;
+        }
+    }
+    async function openChangeHistory() {
+        if (!currentUserRecord ||
+            currentUserRecord.estado !== 'approved' ||
+            !isModeratorRole(currentUserRecord.rol)) {
+            return Swal.fire({
+                icon: 'error',
+                title: 'Restricted',
+                text: 'Only an approved moderator can view the change history.',
+                confirmButtonColor: 'var(--huf-red)'
+            });
+        }
+
+        try {
+            const snapshot = await db.ref('changeHistory')
+                .orderByChild('timestamp')
+                .limitToLast(100)
+                .once('value');
+            const records = [];
+            snapshot.forEach((child) => records.push({ id: child.key, ...child.val() }));
+            records.sort((a, b) => String(b.timestamp || '').localeCompare(String(a.timestamp || '')));
+
+            const rows = records.length
+                ? records.map((entry) => {
+                    const date = entry.timestamp ? new Date(entry.timestamp).toLocaleString() : 'Unknown date';
+                    return `<tr>
+                        <td style="padding:8px; border-bottom:1px solid #eee; white-space:nowrap;">${escapeHtmlSafe(date)}</td>
+                        <td style="padding:8px; border-bottom:1px solid #eee;">${escapeHtmlSafe(entry.actorName || 'Unknown')}</td>
+                        <td style="padding:8px; border-bottom:1px solid #eee;">${escapeHtmlSafe(entry.action || 'Change')}</td>
+                        <td style="padding:8px; border-bottom:1px solid #eee;">${escapeHtmlSafe(entry.details || '')}</td>
+                    </tr>`;
+                }).join('')
+                : '<tr><td colspan="4" style="padding:18px; text-align:center; color:#777;">No changes recorded yet.</td></tr>';
+
+            await Swal.fire({
+                title: 'Change History',
+                width: '95%',
+                showConfirmButton: false,
+                showCloseButton: true,
+                html: `<p style="text-align:left; color:#666;">Showing the latest ${records.length} recorded changes.</p>
+                    <div style="max-height:65vh; overflow:auto;">
+                        <table style="width:100%; border-collapse:collapse; text-align:left; font-size:12px;">
+                            <thead><tr style="background:#2c3e50; color:white;">
+                                <th style="padding:9px;">Date</th><th style="padding:9px;">User</th>
+                                <th style="padding:9px;">Change</th><th style="padding:9px;">Details</th>
+                            </tr></thead><tbody>${rows}</tbody>
+                        </table>
+                    </div>`
+            });
+        } catch (error) {
+            console.error('Unable to load change history', error);
+            Swal.fire('Error', `Could not load change history: ${escapeHtmlSafe(error.message)}`, 'error');
+        }
     }
     async function openRegisterRequestModal() {
     await bootUserAccessSystem();
@@ -1647,10 +2252,11 @@ onkeydown="manejarTeclado(event)" onclick="hideContextMenu()">
         const newKey = `usr_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
         
         try {
+            const credentials = await hashPassword(pass);
             await db.ref(`${DB_USERS}/${newKey}`).set({
                 nombre,
                 user,
-                pass,
+                ...credentials,
                 rol,
                 estado: 'pending',
                 creadoEn: new Date().toISOString(),
@@ -1795,15 +2401,27 @@ onkeydown="manejarTeclado(event)" onclick="hideContextMenu()">
         const finalRole = chosenRole || (activeRoleSelect ? normalizeRole(activeRoleSelect.value) : null);
         const payload = { estado: 'approved', aprobadoEn: new Date().toISOString(), aprobadoPor: localStorage.getItem('user_name_huf') || userSession || 'moderator' };
         if (finalRole) payload.rol = finalRole;
-        await db.ref(`${DB_USERS}/${id}`).update(payload);
+        if (!(await updateUserWithAudit(
+            { [`${DB_USERS}/${id}`]: payload },
+            'User access approved',
+            `${id}${finalRole ? ` with role ${finalRole}` : ''}`
+        ))) return;
         await refreshUserAdminPanel();
     }
     async function rejectManagedUser(id) {
-        await db.ref(`${DB_USERS}/${id}`).update({ estado: 'rejected', rechazadoEn: new Date().toISOString(), aprobadoPor: localStorage.getItem('user_name_huf') || userSession || 'moderator' });
+        if (!(await updateUserWithAudit(
+            { [`${DB_USERS}/${id}`]: { estado: 'rejected', rechazadoEn: new Date().toISOString(), aprobadoPor: localStorage.getItem('user_name_huf') || userSession || 'moderator' } },
+            'User access rejected',
+            id
+        ))) return;
         await refreshUserAdminPanel();
     }
     async function setManagedUserPending(id) {
-        await db.ref(`${DB_USERS}/${id}`).update({ estado: 'pending' });
+        if (!(await updateUserWithAudit(
+            { [`${DB_USERS}/${id}`]: { estado: 'pending' } },
+            'User access returned to pending',
+            id
+        ))) return;
         await refreshUserAdminPanel();
     }
     async function deleteManagedUser(id) {
@@ -1816,17 +2434,26 @@ onkeydown="manejarTeclado(event)" onclick="hideContextMenu()">
         }
         const ok = await Swal.fire({ icon:'warning', title:'Delete user?', text:`${target.user} will be removed permanently.`, showCancelButton:true, confirmButtonColor:'var(--huf-red)' });
         if (!ok.isConfirmed) return;
-        await db.ref(`${DB_USERS}/${id}`).remove();
+        if (!(await updateUserWithAudit(
+            { [`${DB_USERS}/${id}`]: null },
+            'User deleted',
+            `${target.user} (${id})`
+        ))) return;
         await refreshUserAdminPanel();
     }
     async function updateManagedUserRole(id, role) {
         if (!id) return;
-        await db.ref(`${DB_USERS}/${id}`).update({ rol: normalizeRole(role) });
+        const normalizedRole = normalizeRole(role);
+        if (!(await updateUserWithAudit(
+            { [`${DB_USERS}/${id}/rol`]: normalizedRole },
+            'User role updated',
+            `${id}: ${normalizedRole}`
+        ))) return;
         const currentId = localStorage.getItem('user_id_huf');
         if (currentId && currentId === id) {
-            const newRole = normalizeRole(role);
-            localStorage.setItem('role_huf', newRole);
-            userRole = newRole;
+            localStorage.setItem('role_huf', normalizedRole);
+            userRole = normalizedRole;
+            if (currentUserRecord) currentUserRecord.rol = normalizedRole;
             aplicarRestriccionesRol();
             toggleModeratorUsersButton();
         }
@@ -1869,15 +2496,21 @@ onkeydown="manejarTeclado(event)" onclick="hideContextMenu()">
         });
         if (!result.isConfirmed || !result.value) return;
         const newKey = `usr_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
-        await db.ref(`${DB_USERS}/${newKey}`).set({
+        const credentials = await hashPassword(result.value.pass);
+        const newUser = {
             nombre: result.value.nombre,
             user: result.value.user,
-            pass: result.value.pass,
+            ...credentials,
             rol: result.value.rol,
             estado: 'approved',
             creadoEn: new Date().toISOString(),
             creadoPor: localStorage.getItem('user_name_huf') || userSession || 'moderator'
-        });
+        };
+        if (!(await updateUserWithAudit(
+            { [`${DB_USERS}/${newKey}`]: newUser },
+            'User account created',
+            `${newUser.user} with role ${newUser.rol}`
+        ))) return;
         await openUserAdminPanel();
     }
 
@@ -1972,7 +2605,13 @@ function guardarCambios() {
     }));
 
     // 3. EJECUCIÓN EN FIREBASE
-    db.ref('toolingProjects').set(dataParaGuardar)
+    const allocationCount = dataParaGuardar.reduce((total, project) =>
+        total + project.activities.reduce((activityTotal, activity) => activityTotal + activity.teams.length, 0), 0);
+    updateWithAudit(
+        { toolingProjects: dataParaGuardar },
+        'Equipment forecast saved',
+        `${dataParaGuardar.length} projects and ${allocationCount} equipment allocations`
+    )
         .then(() => {
             console.log("Database Sync: OK");
             renderGantt(); 
@@ -1980,7 +2619,7 @@ function guardarCambios() {
         })
         .catch(err => {
             console.error("Firebase Error:", err);
-            Swal.fire('Error', 'Could not sync with database: ' + err.message, 'error');
+            Swal.fire('Save Error', 'Changes and their history could not be saved to Firebase: ' + err.message, 'error');
         });
 }
     function popularDeviceTypes() {
@@ -2132,45 +2771,65 @@ function guardarCambios() {
 let userRole = 'viewer'; // Variable global de control
 
 async function validarAcceso() {
-    await bootUserAccessSystem();
-    const u = document.getElementById('userInput').value.trim();
-    const p = document.getElementById('passInput').value;
-    const users = await getUsersFromDB(true);
-    const user = users.find(item => String(item.user || '').trim() === u && String(item.pass || '') === p);
-    if (user) {
-        if (user.estado === 'pending') {
-            return Swal.fire({ icon: 'info', title: 'Pending approval', text: 'Your access request is still waiting for moderator approval.', confirmButtonColor: 'var(--huf-red)' });
-        }
-        if (user.estado === 'rejected') {
-            return Swal.fire({ icon: 'warning', title: 'Access rejected', text: 'Your user is rejected. Ask the moderator to reactivate it.', confirmButtonColor: 'var(--huf-red)' });
-        }
-        currentUserRecord = user;
-        userSession = user.nombre || user.user;
-        userRole = normalizeRole(user.rol || 'viewer');
-        localStorage.setItem('role_huf', userRole);
-        localStorage.setItem('user_id_huf', user.id);
-        localStorage.setItem('user_name_huf', userSession);
-        aplicarRestriccionesRol();
-        toggleModeratorUsersButton();
-        const card = document.getElementById('mainCard');
-        card.classList.remove('card-login');
-        popularDeviceTypes(); 
-        showModule('viewMenu');
-        const configCalendario = {
-            weekNumbers: true, 
-            dateFormat: "Y-m-d",
-            locale: { firstDayOfWeek: 1 }, 
-            onChange: function() {
-                if(typeof revisarConflictoRealTime === "function") revisarConflictoRealTime();
+    const loginButton = document.querySelector('#viewLogin .btn-send');
+    if (loginButton?.disabled) return;
+    if (loginButton) { loginButton.disabled = true; loginButton.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin" aria-hidden="true"></i> &nbsp; Signing in'; }
+    try {
+        await bootUserAccessSystem();
+        const u = document.getElementById('userInput').value.trim();
+        const p = document.getElementById('passInput').value;
+        const users = await getUsersFromDB(true);
+        const user = users.find(item => String(item.user || '').trim() === u);
+        if (user && await verifyUserPassword(user, p)) {
+            if (user.estado === 'pending') {
+                return Swal.fire({ icon: 'info', title: 'Pending approval', text: 'Your access request is still waiting for moderator approval.', confirmButtonColor: 'var(--huf-red)' });
             }
-        };
-        try {
-            flatpickr("#toolStart", configCalendario);
-            flatpickr("#shutStart, #shutEnd, #maintStart, #maintEnd", { weekNumbers: true, dateFormat: "Y-m-d" });
-        } catch (err) { console.warn('flatpickr init skipped', err); }
-        console.log('Acceso concedido como: ' + userRole);
-    } else { 
-        document.getElementById('loginError').style.display = 'block'; 
+            if (user.estado === 'rejected') {
+                return Swal.fire({ icon: 'warning', title: 'Access rejected', text: 'Your user is rejected. Ask the moderator to reactivate it.', confirmButtonColor: 'var(--huf-red)' });
+            }
+            currentUserRecord = user;
+            userSession = user.nombre || user.user;
+            userRole = normalizeRole(user.rol || 'viewer');
+            localStorage.setItem('role_huf', userRole);
+            localStorage.setItem('user_id_huf', user.id);
+            localStorage.setItem('user_name_huf', userSession);
+            aplicarRestriccionesRol();
+            toggleModeratorUsersButton();
+            try {
+                await syncYearWeekVisibility();
+            } catch (syncError) {
+                console.error('Could not synchronize yearly week visibility', syncError);
+                await Swal.fire('Sync Error', `Yearly week settings could not be loaded from Firebase: ${escapeHtmlSafe(syncError.message)}`, 'error');
+            }
+            const card = document.getElementById('mainCard');
+            card.classList.remove('card-login');
+            popularDeviceTypes();
+            showModule('viewMenu');
+            const configCalendario = {
+                weekNumbers: true,
+                dateFormat: "Y-m-d",
+                locale: { firstDayOfWeek: 1 },
+                onChange: function() {
+                    if(typeof revisarConflictoRealTime === "function") revisarConflictoRealTime();
+                }
+            };
+            try {
+                flatpickr("#toolStart", configCalendario);
+                flatpickr("#shutStart, #shutEnd, #maintStart, #maintEnd", { weekNumbers: true, dateFormat: "Y-m-d" });
+            } catch (err) { console.warn('flatpickr init skipped', err); }
+            console.log('Acceso concedido como: ' + userRole);
+        } else {
+            document.getElementById('loginError').style.display = 'block';
+        }
+    } catch (error) {
+        console.error('Login error', error);
+        const errorBox = document.getElementById('loginError');
+        errorBox.textContent = error.message.includes('Secure password hashing')
+            ? 'Open this system over HTTPS to sign in securely.'
+            : 'Unable to verify credentials. Check your connection and try again.';
+        errorBox.style.display = 'block';
+    } finally {
+        if (loginButton) { loginButton.disabled = false; loginButton.innerHTML = '<i class="fa-solid fa-arrow-right-to-bracket" aria-hidden="true"></i> &nbsp; Sign In'; }
     }
 }
     function logout() { userSession = ""; currentUserRecord = null; userRole = 'viewer'; localStorage.removeItem('role_huf'); localStorage.removeItem('user_id_huf'); localStorage.removeItem('user_name_huf'); if(backupTimer) clearInterval(backupTimer); document.getElementById('mainCard').classList.add('card-login'); aplicarRestriccionesRol(); toggleModeratorUsersButton(); showModule('viewLogin');
@@ -2287,69 +2946,127 @@ async function validarAcceso() {
 }
 
   
+function parseLocalDate(value) {
+    if (value instanceof Date) {
+        return new Date(value.getUTCFullYear(), value.getUTCMonth(), value.getUTCDate());
+    }
+    const text = String(value || '');
+    return /^\d{4}-\d{2}-\d{2}$/.test(text)
+        ? new Date(`${text}T00:00:00`)
+        : new Date(text);
+}
+
+function formatConflictDate(date) {
+    return date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+}
+
+function getConflictDescription(conflict) {
+    const start = formatConflictDate(conflict.overlapStart);
+    const end = formatConflictDate(new Date(conflict.overlapEndExclusive.getTime() - 86400000));
+    const period = start === end ? start : `${start} – ${end}`;
+    if (conflict.type === 'MAINTENANCE') {
+        return `Maintenance: ${conflict.desc || 'Scheduled maintenance'} (${period})`;
+    }
+    return `Project: ${conflict.project} / ${conflict.activity} (${period})`;
+}
+
+function getConflictListHtml(check) {
+    return `<ul style="text-align:left; margin:10px 0 0; padding-left:22px;">${check.conflicts.map((conflict) =>
+        `<li style="margin:6px 0;"><strong>${escapeHtmlSafe(conflict.type === 'MAINTENANCE' ? 'Maintenance' : 'Project')}</strong>: ${escapeHtmlSafe(getConflictDescription(conflict))}</li>`
+    ).join('')}</ul>`;
+}
+
 function validarDisponibilidad(him, startNew, daysNew, excludeP, excludeA, excludeT) {
-    const endNew = new Date(startNew); 
+    const startDate = parseLocalDate(startNew);
+    const endNew = new Date(startDate);
     endNew.setDate(endNew.getDate() + daysNew);
+    const conflicts = [];
 
-    // 1. Revisar contra Logs de Mantenimiento
-    for (let m of maintenanceLogs) {
-        if (m.him === him) {
-            let mStart = new Date(m.start + "T00:00:00");
-            let mEnd = new Date(m.end + "T23:59:59");
-            if (startNew <= mEnd && endNew >= mStart) {
-                return { conflict: true, type: 'MAINTENANCE', desc: m.desc };
-            }
+    maintenanceLogs.forEach((maintenance) => {
+        if (maintenance.him !== him) return;
+        const maintenanceStart = parseLocalDate(maintenance.start);
+        const maintenanceEndExclusive = parseLocalDate(maintenance.end);
+        maintenanceEndExclusive.setDate(maintenanceEndExclusive.getDate() + 1);
+        const overlapStart = new Date(Math.max(startDate.getTime(), maintenanceStart.getTime()));
+        const overlapEndExclusive = new Date(Math.min(endNew.getTime(), maintenanceEndExclusive.getTime()));
+        if (overlapStart < overlapEndExclusive) {
+            conflicts.push({
+                type: 'MAINTENANCE',
+                desc: maintenance.desc,
+                overlapStart,
+                overlapEndExclusive
+            });
         }
-    }
+    });
 
-    // 2. Revisar contra otros proyectos de Tooling
-    for (let pi = 0; pi < toolingProjects.length; pi++) {
-        let proj = toolingProjects[pi];
-        for (let ai = 0; ai < proj.activities.length; ai++) {
-            let act = proj.activities[ai];
-            for (let ti = 0; ti < act.teams.length; ti++) {
-                let t = act.teams[ti];
-                
-                // Excluir la misma tarea si estamos editando
-                if (excludeP === pi && excludeA === ai && excludeT === ti) continue;
+    toolingProjects.forEach((project, projectIndex) => {
+        (project.activities || []).forEach((activity, activityIndex) => {
+            (activity.teams || []).forEach((team, teamIndex) => {
+                if (excludeP === projectIndex && excludeA === activityIndex && excludeT === teamIndex) return;
+                if (team.name !== him) return;
 
-                if (t.name === him) {
-                    const startExist = new Date(t.start); 
-                    const endExist = new Date(t.start); 
-                    // t.days ya está guardado como días totales en el objeto
-                    endExist.setDate(endExist.getDate() + t.days);
-
-                    if (startNew < endExist && endNew > startExist) {
-                        return { conflict: true, type: 'PROJECT', project: proj.name, activity: act.name };
-                    }
+                const existingStart = parseLocalDate(team.start);
+                const existingEndExclusive = new Date(existingStart);
+                existingEndExclusive.setDate(existingEndExclusive.getDate() + Math.max(Number(team.days) || 0, 1));
+                const overlapStart = new Date(Math.max(startDate.getTime(), existingStart.getTime()));
+                const overlapEndExclusive = new Date(Math.min(endNew.getTime(), existingEndExclusive.getTime()));
+                if (overlapStart < overlapEndExclusive) {
+                    conflicts.push({
+                        type: 'PROJECT',
+                        project: project.name,
+                        activity: activity.name,
+                        overlapStart,
+                        overlapEndExclusive
+                    });
                 }
-            }
-        }
-    }
-    return { conflict: false };
+            });
+        });
+    });
+
+    conflicts.sort((a, b) => a.overlapStart - b.overlapStart);
+    return { conflict: conflicts.length > 0, conflicts };
 }
 
 /**
  * Revisa conflictos en tiempo real mientras el usuario escribe (Input en SEMANAS)
  */
 function revisarConflictoRealTime() {
-    const him = document.getElementById('toolHIM').value;
-    const weeks = parseInt(document.getElementById('toolDays').value);
+    const himInput = document.getElementById('toolHIM');
+    const deviceInput = document.getElementById('deviceType');
+    const info = document.getElementById('availabilityInfo');
+    const him = himInput.value;
+    const weeks = Number(document.getElementById('toolDays').value);
     const startStr = document.getElementById('toolStart').value;
-    
-    if (!him || isNaN(weeks) || !startStr || !document.getElementById('deviceType').value) return;
+    const validInput = !!him && Number.isFinite(weeks) && weeks > 0 && !!startStr && !!deviceInput.value;
 
-    // Convertimos semanas a días para la validación exacta
-    const days = weeks * 7;
-    const check = validarDisponibilidad(him, new Date(startStr + "T00:00:00"), days);
-    
-    const bg = check.conflict ? "#ffcccc" : "#fff";
-    document.getElementById('deviceType').style.background = bg;
-    document.getElementById('toolHIM').style.background = bg;
-    
-    // Opcional: mostrar un tooltip o mensaje si hay conflicto
-    if(check.conflict) {
-        console.warn("Conflicto detectado:", check);
+    if (!validInput) {
+        [deviceInput, himInput].forEach((input) => {
+            input.style.background = '#fff';
+            input.style.borderColor = '';
+        });
+        info.textContent = '';
+        info.style.color = '';
+        return;
+    }
+
+    const plannedStart = parseLocalDate(startStr);
+    const dayOfWeek = plannedStart.getDay();
+    plannedStart.setDate(plannedStart.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
+    const check = validarDisponibilidad(him, plannedStart, Math.round(weeks * 7));
+    const hasConflict = check.conflict;
+    [deviceInput, himInput].forEach((input) => {
+        input.style.background = hasConflict ? '#ffcccc' : '#e8f5e9';
+        input.style.borderColor = hasConflict ? '#c62828' : '#2e7d32';
+    });
+
+    if (hasConflict) {
+        const descriptions = check.conflicts.slice(0, 3).map(getConflictDescription);
+        const remaining = check.conflicts.length - descriptions.length;
+        info.textContent = `⚠ ${check.conflicts.length} conflict(s): ${descriptions.join(' | ')}${remaining > 0 ? ` | +${remaining} more` : ''}`;
+        info.style.color = '#b71c1c';
+    } else {
+        info.textContent = `✓ No conflicts found for ${him}.`;
+        info.style.color = '#2e7d32';
     }
 }
 
@@ -2366,6 +3083,9 @@ function addToolingRow() {
 
     if (!projectRaw) {
         return Swal.fire("Attention", "Please enter at least a Project Name", "warning");
+    }
+    if (task && (!him || !startStr || !deviceTypeId || !Number.isFinite(weeksValue) || weeksValue <= 0)) {
+        return Swal.fire('Incomplete allocation', 'Choose an equipment type, HIM, start date, and a duration greater than zero weeks.', 'warning');
     }
 
     const ejecutarInsercion = () => {
@@ -2453,18 +3173,14 @@ function addToolingRow() {
 
         const check = validarDisponibilidad(him, startCheck, Math.round(weeksValue * 7));
         if (check.conflict) {
-            let msg = check.type === 'MAINTENANCE' 
-                ? `The equipment ${him} is in MAINTENANCE.`
-                : `Conflict with Project: ${check.project}.`;
-            
             Swal.fire({
-                title: 'Conflict Detected',
-                text: msg + " Add anyway?",
+                title: `${check.conflicts.length} Scheduling Conflict${check.conflicts.length === 1 ? '' : 's'}`,
+                html: `<p style="text-align:left;">${escapeHtmlSafe(him)} is already assigned or unavailable during part of this period. Review the overlap details before continuing.</p>${getConflictListHtml(check)}`,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#aa1c25',
-                confirmButtonText: 'Yes, Overbook',
-                cancelButtonText: 'Cancel'
+                confirmButtonText: 'Save anyway',
+                cancelButtonText: 'Cancel reservation'
             }).then((result) => {
                 if (result.isConfirmed) ejecutarInsercion();
             });
@@ -2569,11 +3285,11 @@ function deleteIndividualBar(pIdx, aIdx, tIdx) {
             if (isNaN(parsedDays) || parsedDays <= 0) return Swal.fire('Error', 'Invalid number', 'error');
             const check = validarDisponibilidad(team.name, team.start, parsedDays, pIdx, aIdx, tIdx);
             if (check.conflict) {
-                 if (check.type === 'MAINTENANCE') {
-                    return Swal.fire('BLOCKED BY MAINTENANCE', `This equipment is in maintenance.\nReason: ${check.desc}`, 'error');
-                 } else {
-                    return Swal.fire('CONFLICT', `Overlap with:\nProject: ${check.project}\nActivity: ${check.activity}`, 'warning');
-                 }
+                return Swal.fire({
+                    title: `${check.conflicts.length} Scheduling Conflict${check.conflicts.length === 1 ? '' : 's'}`,
+                    html: getConflictListHtml(check),
+                    icon: 'warning'
+                });
             }
             toolingProjects[pIdx].activities[aIdx].teams[tIdx].days = parsedDays;
             guardarCambios();
@@ -2727,6 +3443,208 @@ function normalizeYearFilter(value) {
     if (value === 'all' || value === '' || value === null || value === undefined) return 'all';
     const parsed = parseInt(value, 10);
     return Number.isNaN(parsed) ? 'all' : parsed;
+}
+
+let yearWeekVisibilityCache = {};
+let yearWeekVisibilitySyncPromise = null;
+let yearWeekVisibilityListenerAttached = false;
+
+function getYearWeekVisibility(year) {
+    const defaultMap = { 1: false, 51: false, 52: false, 53: false };
+    return { ...defaultMap, ...(yearWeekVisibilityCache[String(year)] || {}) };
+}
+
+async function syncYearWeekVisibility() {
+    if (yearWeekVisibilitySyncPromise) return yearWeekVisibilitySyncPromise;
+
+    yearWeekVisibilitySyncPromise = (async () => {
+        const visibilityRef = db.ref('statsWeekVisibility');
+        let snapshot = await visibilityRef.once('value');
+        let remoteConfig = snapshot.val() || {};
+
+        if (!snapshot.exists()) {
+            let legacyConfig = {};
+            try {
+                legacyConfig = JSON.parse(localStorage.getItem('huf_stats_week_visibility') || '{}');
+            } catch (error) {
+                console.warn('Ignoring invalid local week-visibility data during Firebase migration.', error);
+            }
+
+            if (Object.keys(legacyConfig).length > 0) {
+                await visibilityRef.update(legacyConfig);
+                snapshot = await visibilityRef.once('value');
+                remoteConfig = snapshot.val() || {};
+            }
+        }
+
+        yearWeekVisibilityCache = remoteConfig;
+        if (!yearWeekVisibilityListenerAttached) {
+            visibilityRef.on('value', (realtimeSnapshot) => {
+                yearWeekVisibilityCache = realtimeSnapshot.val() || {};
+                if (typeof renderAllStats === 'function') renderAllStats();
+                if (typeof updateUI === 'function') updateUI();
+            }, (error) => {
+                console.error('Week-visibility Firebase listener failed', error);
+                if (currentUserRecord && isModeratorRole(currentUserRecord.rol)) {
+                    Swal.fire('Sync Error', `Could not synchronize yearly week settings: ${escapeHtmlSafe(error.message)}`, 'error');
+                }
+            });
+            yearWeekVisibilityListenerAttached = true;
+        }
+    })();
+
+    try {
+        await yearWeekVisibilitySyncPromise;
+    } catch (error) {
+        yearWeekVisibilitySyncPromise = null;
+        throw error;
+    }
+}
+
+async function saveYearWeekVisibility(year, visibilityMap) {
+    if (!Number.isInteger(Number(year)) || Number(year) < 1900 || Number(year) > 9999) {
+        throw new Error('Choose a valid year before saving week settings.');
+    }
+    const normalizedMap = {};
+    [1, 51, 52, 53].forEach((week) => {
+        if (visibilityMap[String(week)] === true && (week !== 53 || getISOWeeksInYear(Number(year)) === 53)) {
+            normalizedMap[String(week)] = true;
+        }
+    });
+
+    await updateWithAudit(
+        { [`statsWeekVisibility/${Number(year)}`]: normalizedMap },
+        'Yearly week visibility updated',
+        `${year}: enabled special weeks ${Object.keys(normalizedMap).length ? Object.keys(normalizedMap).join(', ') : 'none'}`
+    );
+    yearWeekVisibilityCache[String(year)] = normalizedMap;
+}
+
+function getISOWeeksInYear(year) {
+    const dec28 = new Date(Date.UTC(year, 11, 28));
+    const day = dec28.getUTCDay() || 7;
+    dec28.setUTCDate(dec28.getUTCDate() + 4 - day);
+    const firstDay = new Date(Date.UTC(dec28.getUTCFullYear(), 0, 1));
+    return Math.ceil(((dec28 - firstDay) / 86400000 + 1) / 7);
+}
+
+function isWeekVisibleForYear(year, weekNumber) {
+    const weekNum = Number(weekNumber);
+    if (!Number.isInteger(weekNum) || weekNum < 1 || weekNum > 53) return false;
+    if (weekNum === 53 && getISOWeeksInYear(Number(year)) !== 53) return false;
+
+    if (weekNum >= 2 && weekNum <= 50) {
+        return true;
+    }
+
+    const visibility = getYearWeekVisibility(year);
+    return !!visibility[String(weekNum)];
+}
+
+function getVisibleWeeksForYear(year) {
+    const visibleWeeks = [];
+    for (let weekNum = 2; weekNum <= 50; weekNum++) {
+        visibleWeeks.push(weekNum);
+    }
+
+    for (let weekNum of [1, 51, 52, 53]) {
+        if ((weekNum === 1 || weekNum === 51 || weekNum === 52 || weekNum === 53) && isWeekVisibleForYear(year, weekNum)) {
+            visibleWeeks.push(weekNum);
+        }
+    }
+
+    return visibleWeeks.sort((a, b) => a - b);
+}
+
+function buildWeekVisibilityOptionsHtml(year) {
+    const visibility = getYearWeekVisibility(year);
+    const options = [1, 51, 52, ...(getISOWeeksInYear(Number(year)) === 53 ? [53] : [])];
+    return options.map((week) => `
+        <label style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:8px 10px; border:1px solid #e5e7eb; border-radius:8px; margin-bottom:8px; background:#fafafa;">
+            <span style="font-weight:700; color:#333;">Week ${week}</span>
+            <input type="checkbox" data-week="${week}" ${visibility[String(week)] ? 'checked' : ''} style="width:18px; height:18px; accent-color: var(--huf-red);">
+        </label>
+    `).join('');
+}
+
+async function openWeekVisibilityEditor() {
+    if (!currentUserRecord ||
+        currentUserRecord.estado !== 'approved' ||
+        !isModeratorRole(currentUserRecord.rol)) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'Restricted',
+            text: 'Only moderators can change week visibility for statistics.',
+            confirmButtonColor: 'var(--huf-red)'
+        });
+        return;
+    }
+
+    try {
+        await syncYearWeekVisibility();
+    } catch (error) {
+        console.error('Could not load yearly week visibility', error);
+        Swal.fire('Error', `Could not load week settings from Firebase: ${escapeHtmlSafe(error.message)}`, 'error');
+        return;
+    }
+
+    const currentYear = Number(document.getElementById('statsYearSelector')?.value || selectedYear || new Date().getFullYear());
+    const yearOptions = new Set();
+    for (let year = 2024; year <= new Date().getFullYear() + 10; year++) yearOptions.add(year);
+    Object.keys(yearWeekVisibilityCache).forEach((year) => {
+        const parsedYear = Number(year);
+        if (Number.isInteger(parsedYear)) yearOptions.add(parsedYear);
+    });
+    yearOptions.add(currentYear);
+    const yearSelectOptions = Array.from(yearOptions).sort((a, b) => a - b)
+        .map((year) => `<option value="${year}" ${year === currentYear ? 'selected' : ''}>${year}</option>`)
+        .join('');
+
+    Swal.fire({
+        title: 'Week Visibility by Year',
+        html: `
+            <div style="text-align:left;">
+                <label for="weekVisibilityYear" style="display:block; margin-bottom:6px; font-weight:700;">Year</label>
+                <select id="weekVisibilityYear" style="width:100%; padding:8px; margin-bottom:12px; border:1px solid #ccc; border-radius:6px;">
+                    ${yearSelectOptions}
+                </select>
+                <div id="weekVisibilityOptionsContainer">${buildWeekVisibilityOptionsHtml(currentYear)}</div>
+            </div>
+        `,
+        width: 420,
+        confirmButtonText: 'Save changes',
+        confirmButtonColor: 'var(--huf-red)',
+        showCancelButton: true,
+        cancelButtonText: 'Cancel',
+        focusConfirm: false,
+        didOpen: () => {
+            const yearSelector = document.getElementById('weekVisibilityYear');
+            yearSelector.addEventListener('change', () => {
+                const year = Number(yearSelector.value);
+                const optionsContainer = document.getElementById('weekVisibilityOptionsContainer');
+                optionsContainer.innerHTML = buildWeekVisibilityOptionsHtml(year);
+            });
+        },
+        preConfirm: async () => {
+            const year = Number(document.getElementById('weekVisibilityYear').value);
+            const nextVisibility = {};
+            const inputs = Array.from(document.querySelectorAll('#weekVisibilityOptionsContainer [data-week]'));
+            inputs.forEach((input) => {
+                const week = String(input.getAttribute('data-week'));
+                if (input.checked) nextVisibility[week] = true;
+            });
+            try {
+                await saveYearWeekVisibility(year, nextVisibility);
+            } catch (error) {
+                console.error('Could not save yearly week visibility', error);
+                Swal.showValidationMessage(`Could not save changes to Firebase: ${error.message}`);
+                return false;
+            }
+            if (typeof renderAllStats === 'function') renderAllStats();
+            if (typeof updateUI === 'function') updateUI();
+            return true;
+        }
+    });
 }
 
 function dateRangeOverlapsYear(startDate, endDate, yearFilter) {
@@ -3004,7 +3922,7 @@ function renderGantt() {
                         let barOpacity = proj.status === 'tbd' ? "0.6" : "1";
 
                         html += `<div class="gantt-bar" oncontextmenu="showBarContextMenu(${pIdx}, ${aIdx}, ${t.originalTIdx}, event)" 
-                            style="left:${lp}%; width:${ws}%; height:${h - 4}%; top:${h * act.teams.indexOf(t)}%; background:${getBarColor(t)}; opacity:${barOpacity}; background-repeat: no-repeat; background-size: 100% 100%;">
+                            style="--gantt-delay:${Math.min(act.teams.indexOf(t) * 45, 270)}ms; left:${lp}%; width:${ws}%; height:${h - 4}%; top:${h * act.teams.indexOf(t)}%; background:${getBarColor(t)}; opacity:${barOpacity}; background-repeat: no-repeat; background-size: 100% 100%;">
                             <span class="floating-label">${t.name}</span>
                         </div>`;
                     } else {
@@ -3014,7 +3932,7 @@ function renderGantt() {
                         let barOpacity = proj.status === 'tbd' ? "0.6" : "1";
 
                         html += `<div class="gantt-bar" oncontextmenu="showBarContextMenu(${pIdx}, ${aIdx}, ${t.originalTIdx}, event)" 
-                            style="left:${lp}%; width:${ws}%; height:${h - 4}%; top:${h * act.teams.indexOf(t)}%; background:${getBarColor(t)}; opacity:${barOpacity}; background-repeat: no-repeat; background-size: 100% 100%;">
+                            style="--gantt-delay:${Math.min(act.teams.indexOf(t) * 45, 270)}ms; left:${lp}%; width:${ws}%; height:${h - 4}%; top:${h * act.teams.indexOf(t)}%; background:${getBarColor(t)}; opacity:${barOpacity}; background-repeat: no-repeat; background-size: 100% 100%;">
                             <span class="floating-label">${t.name}</span>
                         </div>`;
                     }
@@ -3078,7 +3996,7 @@ function renderAllStats() {
             return; 
         }
 
-        let occupancyCount = new Array(52).fill(0); 
+        let occupancyCount = new Array(53).fill(0); 
         const defaultTotalHims = dev.hims.length || 1;
 
         toolingProjects.forEach(p => p.activities.forEach(act => act.teams.forEach(t => {
@@ -3090,7 +4008,7 @@ function renderAllStats() {
                     if (dateRangeOverlapsYear(cur, cur, yearFilter)) { 
                         let weekResult = getWeekNumber(cur);
                         let wn = (typeof weekResult === 'object' ? weekResult.week : weekResult) - 1;
-                        if (wn >= 0 && wn < 52) {
+                        if (wn >= 0 && wn < 53) {
                             weeksForThisTask.add(wn);
                         }
                     } 
@@ -3105,6 +4023,7 @@ function renderAllStats() {
 
         const row = document.createElement('div'); 
         row.className = 'device-stat-row';
+        row.style.setProperty('--card-delay', `${Math.min(container.children.length * 70, 560)}ms`);
         row.style.width = "100%";
         row.style.minWidth = "0"; 
         row.style.boxSizing = "border-box";
@@ -3113,10 +4032,9 @@ function renderAllStats() {
 
         let pathD = "";
         
-        // Excluir semana 1 y 52 de las estadísticas/visualización
-        const weeksToShow = occupancyCount.slice(1, 51); // indices 1..50 -> semanas 2..51
-        let bars = weeksToShow.map((totalEquipsOccupied, idx) => {
-            const weekNum = idx + 2; // porque slice empieza en semana 2
+        const visibleWeeks = getVisibleWeeksForYear(selectedYear);
+        let bars = visibleWeeks.map((weekNum, idx) => {
+            const totalEquipsOccupied = occupancyCount[weekNum - 1] || 0;
             const isTodayWeek = (selectedYear === currentYear && weekNum === currentWeekNum);
 
             const currentMaxEquips = getCapacity(dev.id, weekNum, defaultTotalHims);
@@ -3133,14 +4051,14 @@ function renderAllStats() {
             let barColor = isCritical ? "var(--huf-red)" : getPastelColor(dev.id);
             let textColor = isCritical ? "#ffffff" : "#000000";
             
-            let centerX = ((idx + 0.5) / weeksToShow.length) * 1000; // usar 50 como total
+            let centerX = ((idx + 0.5) / Math.max(visibleWeeks.length, 1)) * 1000;
             pathD += (idx === 0 ? "M" : " L") + `${centerX} ${100 - (h > 100 ? 100 : h)}`; 
             
             const labelTooltip = `${isTodayWeek ? '[HOY] ' : ''}CW${weekNum}: ${displayVal}% (${equipsUsedTotal} de ${currentMaxEquips} Equipos)`;
             return `
                 <div class="stats-week-col" 
                      title="${labelTooltip}" 
-                     style="display: flex; flex-direction: column; justify-content: flex-end; position: relative; flex: 1; min-width: 0; height: 100%; z-index: 25;
+                     style="--bar-delay:${Math.min(idx * 7, 294)}ms; display: flex; flex-direction: column; justify-content: flex-end; position: relative; flex: 1; min-width: 0; height: 100%; z-index: 25;
                             ${isTodayWeek ? 'background: linear-gradient(to bottom, rgba(227, 6, 19, 0.1) 0%, rgba(227, 6, 19, 0) 100%); border-left: 1px dashed var(--huf-red); border-right: 1px dashed var(--huf-red);' : ''}">
                     
                     <div class="bar-fill" 
@@ -3249,16 +4167,26 @@ function renderAllStats() {
         else { impacts.forEach(imp => { const row = document.createElement('tr'); row.innerHTML = `<td>${imp.proj}</td><td>${imp.act}</td><td>${imp.him}</td><td class="impact-high">⚠️ DIRECT IMPACT</td>`; tbody.appendChild(row); }); }
     }
 
-    function setShutdown() {
+    async function setShutdown() {
         const start = document.getElementById('shutStart').value;
         const end = document.getElementById('shutEnd').value;
         if(!start || !end) return Swal.fire('Error', 'Select dates first', 'error');
         Swal.fire({ title: 'Shutdown Description', input: 'text', placeholder: 'Easter Break, Maintenance, etc.', showCancelButton: true
-        }).then((result) => {
+        }).then(async (result) => {
             if (result.isConfirmed && result.value) {
                 const newLog = { start, end, desc: result.value, timestamp: new Date().toISOString() };
-                db.ref('shutdownLogs').push(newLog);
-                Swal.fire('Saved', 'Shutdown saved and calendar updated', 'success');
+                const key = db.ref('shutdownLogs').push().key;
+                try {
+                    await updateWithAudit(
+                        { [`shutdownLogs/${key}`]: newLog },
+                        'Shutdown scheduled',
+                        `${start} to ${end}: ${result.value}`
+                    );
+                    Swal.fire('Saved', 'Shutdown saved and calendar updated', 'success');
+                } catch (error) {
+                    console.error('Could not save shutdown and history', error);
+                    Swal.fire('Error', `Could not save shutdown: ${error.message}`, 'error');
+                }
             }
         });
     }
@@ -3278,9 +4206,24 @@ function renderAllStats() {
         Swal.fire({ title: 'Delete record?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#e30613'
         }).then((result) => {
             if (result.isConfirmed) {
-                db.ref('shutdownLogs').once('value', snapshot => {
-                    const keys = Object.keys(snapshot.val());
-                    db.ref('shutdownLogs/' + keys[idx]).remove();
+                db.ref('shutdownLogs').once('value').then(async (snapshot) => {
+                    const records = snapshot.val() || {};
+                    const key = Object.keys(records)[idx];
+                    if (!key) return;
+                    const record = records[key];
+                    try {
+                        await updateWithAudit(
+                            { [`shutdownLogs/${key}`]: null },
+                            'Shutdown removed',
+                            `${record.start || ''} to ${record.end || ''}: ${record.desc || ''}`
+                        );
+                    } catch (error) {
+                        console.error('Could not remove shutdown and write history', error);
+                        Swal.fire('Error', `Could not remove shutdown: ${error.message}`, 'error');
+                    }
+                }).catch((error) => {
+                    console.error('Could not load shutdown record for deletion', error);
+                    Swal.fire('Error', `Could not load shutdown record: ${error.message}`, 'error');
                 });
             }
         });
@@ -3359,7 +4302,7 @@ function analizarMantenimiento() {
     if(modal) modal.style.display = 'block';
 }
 
-    function setMaintenance() {
+    async function setMaintenance() {
         const typeId = document.getElementById('maintDeviceType').value;
         const him = document.getElementById('maintHIM').value;
         const start = document.getElementById('maintStart').value;
@@ -3367,12 +4310,25 @@ function analizarMantenimiento() {
         const desc = document.getElementById('maintDesc').value.trim();
         
         if(!typeId || !him || !start || !end || !desc) return Swal.fire('Error', 'All maintenance fields are required', 'error');
+        if (new Date(`${end}T00:00:00`) < new Date(`${start}T00:00:00`)) {
+            return Swal.fire('Error', 'End date must be on or after the start date.', 'error');
+        }
         
         const typeName = (window.huf_devices_config.find(d => d.id === typeId) || {name: "Unknown"}).name;
         const newLog = { typeName, him, start, end, desc, timestamp: new Date().toISOString() };
-        db.ref('maintenanceLogs').push(newLog);
-        Swal.fire('Saved', 'Equipment maintenance scheduled', 'success');
-        document.getElementById('maintDesc').value = "";
+        const key = db.ref('maintenanceLogs').push().key;
+        try {
+            await updateWithAudit(
+                { [`maintenanceLogs/${key}`]: newLog },
+                'Equipment maintenance scheduled',
+                `${him}, ${start} to ${end}: ${desc}`
+            );
+            Swal.fire('Saved', 'Equipment maintenance scheduled', 'success');
+            document.getElementById('maintDesc').value = "";
+        } catch (error) {
+            console.error('Could not save maintenance and history', error);
+            Swal.fire('Error', `Could not schedule maintenance: ${error.message}`, 'error');
+        }
     }
 
     function renderMaintHistoryTable() {
@@ -3392,9 +4348,24 @@ function analizarMantenimiento() {
         Swal.fire({ title: 'Delete record?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#e30613'
         }).then((result) => {
             if (result.isConfirmed) {
-                db.ref('maintenanceLogs').once('value', snapshot => {
-                    const keys = Object.keys(snapshot.val());
-                    db.ref('maintenanceLogs/' + keys[idx]).remove();
+                db.ref('maintenanceLogs').once('value').then(async (snapshot) => {
+                    const records = snapshot.val() || {};
+                    const key = Object.keys(records)[idx];
+                    if (!key) return;
+                    const record = records[key];
+                    try {
+                        await updateWithAudit(
+                            { [`maintenanceLogs/${key}`]: null },
+                            'Equipment maintenance removed',
+                            `${record.him || ''}, ${record.start || ''} to ${record.end || ''}: ${record.desc || ''}`
+                        );
+                    } catch (error) {
+                        console.error('Could not remove maintenance and write history', error);
+                        Swal.fire('Error', `Could not remove maintenance: ${error.message}`, 'error');
+                    }
+                }).catch((error) => {
+                    console.error('Could not load maintenance record for deletion', error);
+                    Swal.fire('Error', `Could not load maintenance record: ${error.message}`, 'error');
                 });
             }
         });
@@ -3790,12 +4761,19 @@ function saveData() {
             totalHours: fullMonthlyHours.reduce((a,b) => a + b, 0) 
         };
 
-        db.ref(`${DB_PROJECTS}/${editId}`).set(payload).then(() => { 
+        updateWithAudit(
+            { [`${DB_PROJECTS}/${editId}`]: payload },
+            'Manpower forecast project updated',
+            `${payload.name} (${payload.number}), ${selectedYear}`
+        ).then(() => { 
             Swal.fire("Updated", "Project updated successfully!", "success");
             editId = null; 
             document.getElementById('btnSave').innerText = "SAVE";
             resetForm(); 
             if(typeof updateUI === 'function') updateUI();
+        }).catch((error) => {
+            console.error('Could not update forecast project and history', error);
+            Swal.fire('Error', `Could not update project: ${error.message}`, 'error');
         }); 
 
     } else {
@@ -3824,10 +4802,18 @@ function saveData() {
             totalHours: newFullHours.reduce((a,b) => a + b, 0) 
         };
 
-        db.ref(DB_PROJECTS).push(payload).then(() => {
+        const projectKey = db.ref(DB_PROJECTS).push().key;
+        updateWithAudit(
+            { [`${DB_PROJECTS}/${projectKey}`]: payload },
+            'Manpower forecast project created',
+            `${payload.name} (${payload.number}), ${selectedYear}`
+        ).then(() => {
             Swal.fire("Saved", "New project created in the 60-month forecast!", "success");
             resetForm();
             if(typeof updateUI === 'function') updateUI();
+        }).catch((error) => {
+            console.error('Could not save forecast project and history', error);
+            Swal.fire('Error', `Could not save project: ${error.message}`, 'error');
         });
     }
 }
@@ -3903,6 +4889,10 @@ function editProject(id) {
 
 
 async function deleteProject(id) {
+    const project = projectLogs.find((item) => item.id === id);
+    if (!project) {
+        return Swal.fire('Error', 'Could not find the selected project.', 'error');
+    }
     const result = await Swal.fire({
         title: '¿Estás seguro?',
         text: "Esta acción eliminará el proyecto de forma permanente.",
@@ -3916,7 +4906,11 @@ async function deleteProject(id) {
 
     if (result.isConfirmed) {
         try {
-            await db.ref(`${DB_PROJECTS}/${id}`).remove();
+            await updateWithAudit(
+                { [`${DB_PROJECTS}/${id}`]: null },
+                'Manpower forecast project deleted',
+                `${project.name || 'Project'} (${project.number || id})`
+            );
             Swal.fire(
                 '¡Eliminado!',
                 'El proyecto ha sido borrado con éxito.',
@@ -3933,7 +4927,19 @@ async function deleteProject(id) {
 }
     function clearFilters() { selF = { years: [], statuses: [], locs: [], types: [] }; ['fName','fNum','fComm','fPO'].forEach(i => document.getElementById(i).value = ''); renderFilterGrids(); updateUI(); }
     function resetForm() { ['projectName','projectNumber','projectComments','projectPO'].forEach(id => document.getElementById(id).value = ''); document.querySelectorAll('.month-input').forEach(i => i.value = 0); document.querySelectorAll('.month-check').forEach(i => i.checked = false); document.getElementById('btnSave').innerText = "SAVE"; editId = null; }
-    function deleteAllProjects() { if (confirm("ELIMINAR TODO?")) db.ref(DB_PROJECTS).remove(); }
+    async function deleteAllProjects() {
+        if (!confirm("ELIMINAR TODO?")) return;
+        try {
+            await updateWithAudit(
+                { [DB_PROJECTS]: null },
+                'All manpower forecast projects deleted',
+                `${projectLogs.length} projects`
+            );
+        } catch (error) {
+            console.error('Could not delete all forecast projects and write history', error);
+            Swal.fire('Error', `Could not delete projects: ${error.message}`, 'error');
+        }
+    }
 
 async function importCSV(event) {
     const file = event.target.files[0]; 
@@ -3944,6 +4950,7 @@ async function importCSV(event) {
         const lines = e.target.result.split('\n').filter(l => l.trim() !== "");
         const total = lines.length - 1; 
         if(total <= 0) return;
+        let importedCount = 0;
 
         const loader = document.getElementById('import-loader');
         const progressSpan = document.getElementById('import-progress');
@@ -3973,7 +4980,8 @@ async function importCSV(event) {
             };
 
             try { 
-                await db.ref(DB_PROJECTS).push(payload); 
+                await db.ref(DB_PROJECTS).push(payload);
+                importedCount++;
                 if (progressSpan) {
                     progressSpan.innerText = Math.round((i / total) * 100) + "%"; 
                 }
@@ -3983,6 +4991,18 @@ async function importCSV(event) {
         }
 
         if (loader) loader.style.display = 'none';
+        try {
+            await updateWithAudit(
+                {},
+                'Manpower forecast CSV imported',
+                `${importedCount} projects imported`
+            );
+        } catch (error) {
+            console.error('CSV import completed but history could not be recorded', error);
+            Swal.fire('Import warning', `The import finished, but its history entry could not be saved: ${error.message}`, 'warning');
+            if (typeof updateUI === 'function') updateUI();
+            return;
+        }
         Swal.fire("Success", "Importación de 60 meses completada (1 fila por proyecto)", "success");
         if (typeof updateUI === 'function') updateUI();
     };
@@ -4159,6 +5179,7 @@ function openEditCapacityModal() {
         Swal.fire({
             title: `<span style="font-size:18px;">ANNUAL CAPACITY PLANNER - ${year}</span>`,
             html: `
+                <input type="hidden" id="swal-year-input" value="${year}">
                 <div style="margin-bottom: 15px; background: #f8f9fa; padding: 10px; border-radius: 8px; border: 1px solid #ddd; display: flex; align-items: center; justify-content: center; gap: 10px;">
                     <label style="font-weight:bold; font-size:13px;">DEVICE:</label>
                     <select id="swal-device-select" style="width: 250px; padding: 5px; font-size: 13px;" onchange="updateCapacityTable(this.value)">
@@ -4177,25 +5198,41 @@ function openEditCapacityModal() {
             showCancelButton: true,
             confirmButtonText: 'SAVE PLAN',
             confirmButtonColor: '#27ae60',
-            preConfirm: () => {
+            preConfirm: async () => {
                 const devId = document.getElementById('swal-device-select').value;
                 if (!devId) { Swal.showValidationMessage('Select a device'); return false; }
                 
-                // Guardado lógico
-                if (!window.customCapacity[year]) window.customCapacity[year] = {};
-                if (!window.customCapacity[year][devId]) window.customCapacity[year][devId] = {};
+                const weeklyData = {
+                    ...(window.customCapacity[year] && window.customCapacity[year][devId]
+                        ? window.customCapacity[year][devId]
+                        : {})
+                };
                 
-                for (let w = 1; w <= 52; w++) {
+                for (let w = 1; w <= 53; w++) {
                     const input = document.getElementById(`cap-w-${w}`);
-                    if (input) window.customCapacity[year][devId][w] = parseInt(input.value) || 0;
+                    if (input) weeklyData[w] = parseInt(input.value) || 0;
                 }
                 
-                // Guardar en Firebase y LocalStorage
-                db.ref(`equipmentCapacity/${year}/${devId}`).set(window.customCapacity[year][devId]);
+                try {
+                    await updateWithAudit(
+                        { [`equipmentCapacity/${year}/${devId}`]: weeklyData },
+                        'Equipment capacity plan saved',
+                        `${year}, ${devId}: ${Object.keys(weeklyData).length} weekly capacity values`
+                    );
+                } catch (error) {
+                    console.error('Could not save capacity plan', error);
+                    Swal.showValidationMessage(`Could not save the plan and its history: ${error.message}`);
+                    return false;
+                }
+                if (!window.customCapacity[year]) window.customCapacity[year] = {};
+                window.customCapacity[year][devId] = weeklyData;
                 localStorage.setItem('huf_custom_capacity', JSON.stringify(window.customCapacity));
                 return true;
             }
         });
+    }).catch((error) => {
+        console.error('Could not load capacity planner data', error);
+        Swal.fire('Error', `Could not load capacity settings from Firebase: ${error.message}`, 'error');
     });
 }
 function updateCapacityTable(devId) {
@@ -4216,6 +5253,7 @@ function updateCapacityTable(devId) {
     const config = window.huf_devices_config.find(d => d.id === devId);
     const defaultCap = config ? config.hims.length : 0;
     
+    const visibleWeeks = getVisibleWeeksForYear(year);
     let html = `<div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; padding: 5px;">`;
 
     for (let col = 0; col < 6; col++) {
@@ -4226,16 +5264,12 @@ function updateCapacityTable(devId) {
                         </thead>
                         <tbody>`;
         
-        // Generamos la lista de semanas visibles (2..51) y la particionamos en 6 columnas
-        const weeks = [];
-        for (let ww = 2; ww <= 51; ww++) weeks.push(ww);
-        let weeksPerCol = Math.ceil(weeks.length / 6);
-            for (let row = 0; row < weeksPerCol; row++) {
-                const idx = (col * weeksPerCol) + row;
-                if (idx >= weeks.length) break;
-                const w = weeks[idx];
+        const weeksPerCol = Math.ceil(visibleWeeks.length / 6);
+        for (let row = 0; row < weeksPerCol; row++) {
+            const idx = (col * weeksPerCol) + row;
+            if (idx >= visibleWeeks.length) break;
+            const w = visibleWeeks[idx];
 
-            // Buscamos datos según el año y dispositivo
             const val = (window.customCapacity[year] && 
                          window.customCapacity[year][devId] && 
                          window.customCapacity[year][devId][w] !== undefined) 
@@ -4257,16 +5291,19 @@ function updateCapacityTable(devId) {
 }
 
 function copyFirstToAll() {
-    const firstVal = document.getElementById('cap-w-1').value;
-    for (let w = 1; w <= 52; w++) {
-        const input = document.getElementById(`cap-w-${w}`);
-        if (input) input.value = firstVal;
-    }
-    // Breve notificación visual
+    const visibleInputs = Array.from(document.querySelectorAll('input[id^="cap-w-"]'));
+    const firstVisibleInput = visibleInputs[0];
+    if (!firstVisibleInput) return;
+    const firstVal = firstVisibleInput.value;
+    visibleInputs.forEach((input) => {
+        input.value = firstVal;
+    });
     const btn = event.target;
-    const originalText = btn.innerHTML;
-    btn.innerHTML = "✓ Copied!";
-    setTimeout(() => { btn.innerHTML = originalText; }, 1500);
+    if (btn) {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = "✓ Copied!";
+        setTimeout(() => { btn.innerHTML = originalText; }, 1500);
+    }
 }
 // Inicialización de selectores al cargar
 
@@ -4343,18 +5380,19 @@ function renderCapacityGridUI(grid, devId, year) {
     const months = ["JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST","SEPTEMBER","OCTOBER","NOVEMBER","DECEMBER"];
     
     let weekCounter = 1;
+    const visibleWeeks = getVisibleWeeksForYear(year);
     months.forEach((month, mIdx) => {
         const monthCard = document.createElement('div');
         monthCard.style = "background: white; border: 1px solid #ddd; padding: 12px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); align-self: start;";
         
         let weeksHtml = `<h4 style="margin:0 0 12px 0; border-bottom:2px solid var(--huf-red); text-align:center; padding-bottom:5px; color:#333;">${month}</h4>`;
         let weeksInThisMonth = ([2, 5, 8, 11].includes(mIdx)) ? 5 : 4;
+        if (mIdx === 11 && getISOWeeksInYear(Number(year)) === 53) weeksInThisMonth++;
 
         for(let i=0; i < weeksInThisMonth; i++) {
-            if(weekCounter > 52) break;
+            if(weekCounter > getISOWeeksInYear(Number(year))) break;
             const w = weekCounter;
-                // Ocultar semanas 1 y 52: no renderizamos inputs para esas semanas
-                if (w === 1 || w === 52) { weekCounter++; continue; }
+            if (!isWeekVisibleForYear(year, w)) { weekCounter++; i--; continue; }
             
             const val = (window.customCapacity[year] && 
                          window.customCapacity[year][devId] && 
@@ -4377,30 +5415,35 @@ function renderCapacityGridUI(grid, devId, year) {
 
 // NUEVA FUNCIÓN: Copiar valor a todas las semanas de golpe
 function applyValueToAllWeeks() {
-    const val = document.getElementById('quickCapValue').value;
-    if (val === "" || val < 0) {
+    const valInput = document.getElementById('quickCapValue');
+    const year = document.getElementById('capYearSelect')?.value || window.selectedYear || new Date().getFullYear();
+    const val = Number(valInput?.value ?? '');
+    if (!Number.isFinite(val) || val < 0) {
         Swal.fire('Error', 'Please enter a valid number', 'error');
         return;
     }
 
     Swal.fire({
         title: 'Confirm Action',
-        text: `This will set ${val} units for all 50 visible weeks (weeks 2..51). Are you sure?`,
+        text: `This will set ${val} units for all currently visible weeks in this year. Are you sure?`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#555',
         confirmButtonText: 'Yes, change all'
     }).then((result) => {
         if (result.isConfirmed) {
-            for (let w = 2; w <= 51; w++) {
+            const visibleWeeks = getVisibleWeeksForYear(year);
+            visibleWeeks.forEach((w) => {
                 const input = document.getElementById(`input-cap-w-${w}`);
                 if (input) input.value = val;
+            });
+
+            const btn = document.querySelector('[onclick="applyValueToAllWeeks()"]');
+            if (btn) {
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '✓ APPLIED!';
+                setTimeout(() => { btn.innerHTML = originalText; }, 2000);
             }
-            // Pequeño efecto visual de éxito
-            const btn = event.target;
-            const originalText = btn.innerHTML;
-            btn.innerHTML = "✓ APPLIED!";
-            setTimeout(() => { btn.innerHTML = originalText; }, 2000);
         }
     });
 }
@@ -4421,15 +5464,25 @@ function saveCapacityData() {
         return;
     }
 
-    let weeklyData = {};
-    for(let w=1; w<=52; w++) {
+    let weeklyData = {
+        ...(window.customCapacity &&
+            window.customCapacity[year] &&
+            window.customCapacity[year][devId]
+            ? window.customCapacity[year][devId]
+            : {})
+    };
+    for(let w=1; w<=getISOWeeksInYear(Number(year)); w++) {
         const input = document.getElementById(`input-cap-w-${w}`);
         if(input) {
             weeklyData[w] = parseInt(input.value) || 0;
         }
     }
 
-    db.ref(`equipmentCapacity/${year}/${devId}`).set(weeklyData)
+    updateWithAudit(
+        { [`equipmentCapacity/${year}/${devId}`]: weeklyData },
+        'Equipment capacity plan saved',
+        `${year}, ${devId}: ${Object.keys(weeklyData).length} weekly capacity values`
+    )
         .then(() => {
             if(!window.customCapacity) window.customCapacity = {};
             if(!window.customCapacity[year]) window.customCapacity[year] = {};
@@ -4940,10 +5993,8 @@ function editBarFull(pIdx, aIdx, tIdx) {
 
             const check = validarDisponibilidad(team.name, newStart, newDays, pIdx, aIdx, tIdx);
             if (check.conflict) {
-                const msg = check.type === 'MAINTENANCE' 
-                    ? `BLOCKED: Equipment (${check.desc})`
-                    : `CONFLICT: Overlap with Project: ${check.project}`;
-                Swal.showValidationMessage(msg);
+                const details = check.conflicts.map(getConflictDescription).join(' | ');
+                Swal.showValidationMessage(`${check.conflicts.length} conflict(s): ${details}`);
                 return false;
             }
             return { newStart, newDays, newWeeks };
@@ -5023,7 +6074,7 @@ async function openAnnual() {
     window.huf_devices_config.forEach(dev => {
         if (excludedDevices.includes(dev.name) || excludedDevices.includes(dev.id)) return;
 
-        let occupancyCount = new Array(52).fill(0);
+        let occupancyCount = new Array(53).fill(0);
         const defaultTotalHims = dev.hims.length || 1;
 
         toolingProjects.forEach(p => p.activities.forEach(act => act.teams.forEach(t => {
@@ -5034,7 +6085,7 @@ async function openAnnual() {
                     if (cur.getFullYear() === selectedYear) {
                         let weekResult = getWeekNumber(cur);
                         let wn = (typeof weekResult === 'object' ? weekResult.week : weekResult) - 1;
-                        if (wn >= 0 && wn < 52) weeksForThisTask.add(wn);
+                        if (wn >= 0 && wn < 53) weeksForThisTask.add(wn);
                     }
                     cur.setDate(cur.getDate() + 1);
                 }
@@ -5042,21 +6093,16 @@ async function openAnnual() {
             }
         })));
 
+        const visibleWeeks = getVisibleWeeksForYear(selectedYear);
         let totalPercentage = 0;
-        // Cambiamos el rango: empezamos en idx 1 (Semana 2) y terminamos antes de idx 51 (Semana 51)
-        // Esto excluye semana 1 (idx 0) y semana 52 (idx 51)
-        // Excluir semana 1 y 52: tomar índices 1..50 (semanas 2..51)
-        let weeksConsidered = 0;
-        for (let idx = 1; idx <= 50; idx++) {
-            const weekNum = idx + 1; // idx 1 -> semana 2
-            const currentMax = getCapacity(dev.id, weekNum, defaultTotalHims);
-            let val = currentMax > 0 ? (occupancyCount[idx] / currentMax) * 100 : 0;
-            totalPercentage += val;
-            weeksConsidered++;
-        }
 
-        // Dividimos entre el número de semanas consideradas (50)
-        const avgAnnual = weeksConsidered > 0 ? Math.round(totalPercentage / weeksConsidered) : 0;
+        visibleWeeks.forEach((weekNum) => {
+            const currentMax = getCapacity(dev.id, weekNum, defaultTotalHims);
+            const val = currentMax > 0 ? (occupancyCount[weekNum - 1] / currentMax) * 100 : 0;
+            totalPercentage += val;
+        });
+
+        const avgAnnual = visibleWeeks.length > 0 ? Math.round(totalPercentage / visibleWeeks.length) : 0;
         annualData.push({ name: dev.name, id: dev.id, value: avgAnnual });
     });
             // <button id="download-annual-btn" class="btn-tooling" style="background: var(--huf-red); color: white; padding: 8px 15px; border-radius: 4px; cursor: pointer; border: none; font-weight: bold;">
@@ -5308,7 +6354,7 @@ async function openMonthlyView() {
             const defaultTotalHims = dev.hims.length || 1;
 
             // ✅ 1. CALCULAR USO POR SEMANA (mismo que forecast)
-            let occupancyCount = new Array(52).fill(0);
+            let occupancyCount = new Array(53).fill(0);
 
             toolingProjects.forEach(p => p.activities.forEach(act => act.teams.forEach(t => {
                 if (t.typeId === dev.id) {
@@ -5322,7 +6368,7 @@ async function openMonthlyView() {
                             let weekResult = getWeekNumber(cur);
                             let wn = (typeof weekResult === 'object' ? weekResult.week : weekResult) - 1;
 
-                            if (wn >= 0 && wn < 52) {
+                            if (wn >= 0 && wn < 53) {
                                 weeksForThisTask.add(wn);
                             }
                         }
@@ -5336,31 +6382,27 @@ async function openMonthlyView() {
                 }
             })));
 
-            // ✅ 2. CALCULAR MONTHLY BASADO EN SEMANAS (FIX REAL)
+            // ✅ 2. CALCULAR MONTHLY BASADO EN SEMANAS ACTIVAS DEL AÑO ACTUAL
             let monthsBreakdown = new Array(12).fill(0).map((_, monthIdx) => {
 
                 let totalPercentage = 0;
                 let weeksCount = 0;
+                const visibleWeeks = getVisibleWeeksForYear(selectedYear);
 
-                // Excluir semana 1 y 52: iterar semanas 2..51
-                for (let week = 2; week <= 51; week++) {
-
-                    // fecha representativa de la semana
-                    let tempDate = new Date(selectedYear, 0, (week - 1) * 7);
+                for (const week of visibleWeeks) {
+                    const tempDate = new Date(selectedYear, 0, (week - 1) * 7);
 
                     if (tempDate.getMonth() === monthIdx) {
-
                         const used = occupancyCount[week - 1];
                         const cap = getCapacity(dev.id, week, defaultTotalHims);
 
-                        let val = cap > 0 ? (used / cap) * 100 : 0;
-
+                        const val = cap > 0 ? (used / cap) * 100 : 0;
                         totalPercentage += val;
                         weeksCount++;
                     }
                 }
 
-                return weeksCount > 0 
+                return weeksCount > 0
                     ? Math.round(totalPercentage / weeksCount)
                     : 0;
             });
