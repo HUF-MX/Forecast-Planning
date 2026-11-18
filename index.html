@@ -90,11 +90,11 @@
     --loc-spare: #555;
             
         }
-        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f1; margin: 0; padding: 10px; overflow-x: hidden; }
-        .card { max-width: 98%; margin: auto; background: #ffffff; padding: 12px; border-radius: 12px; border-top: 8px solid var(--huf-red); box-shadow: 0 4px 15px rgba(0,0,0,0.1); position: relative; min-height: 550px; transition: max-width 0.4s ease; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f4f1; margin: 0; padding: 0; overflow-x: hidden; }
+        .card { width: 100%; max-width: none; box-sizing: border-box; margin: auto; background: #ffffff; padding: 12px; border-radius: 12px; border-top: 8px solid var(--huf-red); box-shadow: 0 4px 15px rgba(0,0,0,0.1); position: relative; min-height: 550px; transition: max-width 0.4s ease; }
         .card-login { max-width: 30%; margin: auto; background: #ffffff; padding: 12px; border-radius: 12px; border-top: 8px solid var(--huf-red); box-shadow: 0 4px 15px rgba(0,0,0,0.1); position: relative; min-height: 550px; transition: max-width 0.4s ease; }
         
-        .card.wide-view { max-width: 90%; }
+        .card.wide-view { max-width: 100%; }
         .logo-container { text-align: center; margin-top: 20px; }
         .logo-container img { max-width: 180px; display: block; margin: 40 ; }
         .logo-subtitle { margin: 0; padding: 0; font-size: 14px; font-weight: bold; color: #555; line-height: 1.1;text-align: left; }
@@ -180,7 +180,7 @@
     font-size: 13px;
 }
 
-       .app-container { width: 98%; margin: 0px auto; background: #ffffff; padding: 10px; border-radius: 0px; border-top: 2px  }
+       .app-container { width: 100%; box-sizing: border-box; margin: 0px auto; background: #ffffff; padding: 10px; border-radius: 0px; border-top: 2px  }
 
 
         
@@ -263,7 +263,7 @@
         
         .device-him-group { flex: 1.3 !important; display: flex !important; flex-direction: row !important; gap: 8px; position: relative; }
         .device-him-group div { flex: 1; }
-        #availabilityInfo { position: absolute; top: 315px; left: 80px; width: 100%; text-align: center; font-size: 18px; font-weight: bold; color: var(--huf-black); height: 28px; pointer-events: none; }
+        #availabilityInfo { display: none; position: absolute; right: 4px; bottom: 8px; width: 24px; height: 24px; padding: 0; border: 0; background: transparent; color: #b71c1c; font-size: 20px; cursor: pointer; }
 
 .gantt-wrapper { overflow: auto; background: rgb(175, 11, 11); border: 1px solid #ddd; border-radius: 8px; max-height: 1000px; position: relative; scroll-behavior: smooth; }
  .gantt-grid { display: grid; grid-template-columns: 600px 1fr; min-width: fit-content; }
@@ -1317,7 +1317,7 @@ body.is-readonly select.admin-only {
     }
 
     @media (max-width: 640px) {
-        body { padding: 8px; }
+        body { padding: 0; }
         #mainCard.card-login { width: auto; margin: 5vh 4px; padding: 24px 20px; }
         #mainCard.card-login .logo-container { margin-bottom: 30px; }
         #mainCard.card-login .logo-container img { max-width: 120px; max-height: 48px; }
@@ -1619,8 +1619,7 @@ onkeydown="manejarTeclado(event)" onclick="hideContextMenu()">
             <div style="flex:0.5;"><label style="display: block; text-align: center;  font-size: 16px">Start Date</label>
             <input type="text" id="toolStart" placeholder="Select Date..." style="background: white; cursor: pointer;">
             </div>
-<div style="flex:0.3;"><label style="display: block; text-align: center;  font-size: 16px">Weeks</label><input type="number" id="toolDays" placeholder="0" oninput="revisarConflictoRealTime()"></div>
-<div id="availabilityInfo" role="status" aria-live="polite" style="flex: 1 0 100%; min-height: 18px; font-size: 13px; font-weight: 600;"></div>
+<div style="flex:0.3; position:relative;"><label style="display: block; text-align: center;  font-size: 16px">Weeks</label><input type="number" id="toolDays" placeholder="0" oninput="revisarConflictoRealTime()" style="padding-right:30px;"><button type="button" id="availabilityInfo" aria-label="View scheduling conflicts" title="View scheduling conflicts" onclick="showAllocationConflictDetails()"><i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i></button></div>
 
 
 
@@ -2976,6 +2975,18 @@ function getConflictListHtml(check) {
     ).join('')}</ul>`;
 }
 
+let currentAllocationConflicts = [];
+
+function showAllocationConflictDetails() {
+    if (!currentAllocationConflicts.length) return;
+    Swal.fire({
+        title: `${currentAllocationConflicts.length} Scheduling Conflict${currentAllocationConflicts.length === 1 ? '' : 's'}`,
+        html: `<p style="text-align:left;">Review the projects or maintenance records that overlap this equipment reservation.</p>${getConflictListHtml({ conflicts: currentAllocationConflicts })}`,
+        icon: 'warning',
+        confirmButtonColor: 'var(--huf-red)'
+    });
+}
+
 function validarDisponibilidad(him, startNew, daysNew, excludeP, excludeA, excludeT) {
     const startDate = parseLocalDate(startNew);
     const endNew = new Date(startDate);
@@ -3040,12 +3051,12 @@ function revisarConflictoRealTime() {
     const validInput = !!him && Number.isFinite(weeks) && weeks > 0 && !!startStr && !!deviceInput.value;
 
     if (!validInput) {
+        currentAllocationConflicts = [];
+        info.style.display = 'none';
         [deviceInput, himInput].forEach((input) => {
             input.style.background = '#fff';
             input.style.borderColor = '';
         });
-        info.textContent = '';
-        info.style.color = '';
         return;
     }
 
@@ -3054,19 +3065,18 @@ function revisarConflictoRealTime() {
     plannedStart.setDate(plannedStart.getDate() - (dayOfWeek === 0 ? 6 : dayOfWeek - 1));
     const check = validarDisponibilidad(him, plannedStart, Math.round(weeks * 7));
     const hasConflict = check.conflict;
+    currentAllocationConflicts = check.conflicts;
     [deviceInput, himInput].forEach((input) => {
         input.style.background = hasConflict ? '#ffcccc' : '#e8f5e9';
         input.style.borderColor = hasConflict ? '#c62828' : '#2e7d32';
     });
 
     if (hasConflict) {
-        const descriptions = check.conflicts.slice(0, 3).map(getConflictDescription);
-        const remaining = check.conflicts.length - descriptions.length;
-        info.textContent = `⚠ ${check.conflicts.length} conflict(s): ${descriptions.join(' | ')}${remaining > 0 ? ` | +${remaining} more` : ''}`;
-        info.style.color = '#b71c1c';
+        info.style.display = 'block';
+        info.title = `View ${check.conflicts.length} scheduling conflict(s)`;
+        info.setAttribute('aria-label', `View ${check.conflicts.length} scheduling conflict(s)`);
     } else {
-        info.textContent = `✓ No conflicts found for ${him}.`;
-        info.style.color = '#2e7d32';
+        info.style.display = 'none';
     }
 }
 
@@ -3284,15 +3294,25 @@ function deleteIndividualBar(pIdx, aIdx, tIdx) {
             const parsedDays = Math.round(parseFloat(result.value) * 7); // Borrado parseInt, puesto conversión a días
             if (isNaN(parsedDays) || parsedDays <= 0) return Swal.fire('Error', 'Invalid number', 'error');
             const check = validarDisponibilidad(team.name, team.start, parsedDays, pIdx, aIdx, tIdx);
+            const saveDuration = () => {
+                toolingProjects[pIdx].activities[aIdx].teams[tIdx].days = parsedDays;
+                guardarCambios();
+            };
             if (check.conflict) {
-                return Swal.fire({
+                Swal.fire({
                     title: `${check.conflicts.length} Scheduling Conflict${check.conflicts.length === 1 ? '' : 's'}`,
                     html: getConflictListHtml(check),
-                    icon: 'warning'
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#aa1c25',
+                    confirmButtonText: 'Save anyway',
+                    cancelButtonText: 'Cancel'
+                }).then((conflictResult) => {
+                    if (conflictResult.isConfirmed) saveDuration();
                 });
+                return;
             }
-            toolingProjects[pIdx].activities[aIdx].teams[tIdx].days = parsedDays;
-            guardarCambios();
+            saveDuration();
         }
     });
 }
@@ -5948,6 +5968,16 @@ function editBarFull(pIdx, aIdx, tIdx) {
                     color: #444;
                 }
                 #swal-start { background: white !important; cursor: pointer; }
+                .allocation-conflict-warning {
+                    display: none;
+                    margin: 18px -10px -10px;
+                    padding: 12px 16px;
+                    background: #fff1f0;
+                    border-top: 1px solid #f3c7c4;
+                    color: #8f2525;
+                    font-size: 13px;
+                }
+                .allocation-conflict-warning ul { margin-bottom: 0 !important; }
             </style>
             <div class="allocation-form">
                 <div class="device-badge">
@@ -5959,18 +5989,36 @@ function editBarFull(pIdx, aIdx, tIdx) {
                 
                 <label>Duration (Weeks):</label>
                 <input type="number" id="swal-weeks" class="swal2-input" value="${(team.days / 7).toFixed(1)}" step="0.5">
+                <div id="allocation-conflict-warning" class="allocation-conflict-warning" role="status"></div>
             </div>
         `,
         showCancelButton: true,
         confirmButtonText: 'Save Changes',
         confirmButtonColor: '#e30613',
         didOpen: () => {
+            const updateConflictWarning = () => {
+                const warning = document.getElementById('allocation-conflict-warning');
+                const newStart = document.getElementById('swal-start').value;
+                const newWeeks = Number(document.getElementById('swal-weeks').value);
+                if (!newStart || !Number.isFinite(newWeeks) || newWeeks <= 0) {
+                    warning.style.display = 'none';
+                    warning.innerHTML = '';
+                    return;
+                }
+
+                const check = validarDisponibilidad(team.name, newStart, Math.round(newWeeks * 7), pIdx, aIdx, tIdx);
+                warning.style.display = check.conflict ? 'block' : 'none';
+                warning.innerHTML = check.conflict
+                    ? `<strong>${check.conflicts.length} scheduling conflict${check.conflicts.length === 1 ? '' : 's'}.</strong> You can still save this allocation; review the overlap:<br>${getConflictListHtml(check)}`
+                    : '';
+            };
             flatpickr("#swal-start", {
                 weekNumbers: true, 
                 dateFormat: "Y-m-d",
                 defaultDate: team.start,
                 locale: { firstDayOfWeek: 1 },
                 static: false, 
+                onChange: updateConflictWarning,
                 onReady: function(selectedDates, dateStr, instance) {
                     if (team.start) {
                         const d = team.start.split('-');
@@ -5978,6 +6026,8 @@ function editBarFull(pIdx, aIdx, tIdx) {
                     }
                 }
             });
+            document.getElementById('swal-weeks').addEventListener('input', updateConflictWarning);
+            updateConflictWarning();
         },
         preConfirm: () => {
             const newStart = document.getElementById('swal-start').value;
@@ -5991,12 +6041,6 @@ function editBarFull(pIdx, aIdx, tIdx) {
                 return false;
             }
 
-            const check = validarDisponibilidad(team.name, newStart, newDays, pIdx, aIdx, tIdx);
-            if (check.conflict) {
-                const details = check.conflicts.map(getConflictDescription).join(' | ');
-                Swal.showValidationMessage(`${check.conflicts.length} conflict(s): ${details}`);
-                return false;
-            }
             return { newStart, newDays, newWeeks };
         }
     }).then((result) => {
